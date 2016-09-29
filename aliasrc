@@ -1,0 +1,24 @@
+alias ..='cd ..'
+alias l='ls -alh'
+alias ll='ls -alh'
+alias sitesavailable='cd /etc/apache2/sites-available/'
+alias install='sudo apt-get install'
+alias errlog='tail -f /var/log/apache2/error.log'
+alias psg='ps aux | grep'
+
+alias www='cd ~/www'
+alias s='php app/console --ansi'
+alias ass='php app/console --ansi assets:install --symlink && php app/console assetic:dump && php app/console ca:c'
+
+alias st='git status'
+alias adda='git add -u; git status'
+alias lg='git lg'
+alias ff='git diff'
+alias deleteMergedBranches='git branch -D $(git branch --merged)'
+
+alias vup='vagrant up'
+alias vdw='vagrant halt'
+alias vss='vagrant ssh'
+
+alias mountDocker='sudo mount docker.dev:/home/project/projects ~/www/docker-projects'
+alias gad='git diff HEAD --stat | fpp'
