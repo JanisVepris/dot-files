@@ -38,4 +38,6 @@ export C_LIGHT_CYAN='\033[1;36m'
 export C_LIGHT_RED='\033[1;31m'
 export C_LIGHT_PURPLE='\033[1;35m'
 
-source $DOT_WORK_DIR/.env
+if [ -f "$DOT_WORK_DIR/.env" ]; then
+    source $DOT_WORK_DIR/.env
+fi
