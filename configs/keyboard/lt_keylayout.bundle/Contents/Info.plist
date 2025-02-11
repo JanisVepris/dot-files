@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>org.sil.ukelele.keyboardlayout.lithuanian(numeric)</string>
+	<key>CFBundleName</key>
+	<string>Lithuanian (numeric)</string>
+	<key>CFBundleVersion</key>
+	<string>3.1.0</string>
+	<key>KLInfo_Lithuanian (numeric)</key>
+	<dict>
+		<key>TISInputSourceID</key>
+		<string>org.sil.ukelele.keyboardlayout.lithuanian(numeric).lithuanian(numeric)</string>
+		<key>TISIntendedLanguage</key>
+		<string>lt-LT</string>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+PHPUNIT="./vendor/bin/phpunit"
+TIMES=$1
+FILTER=$2
+EXITCODE=0
+
+N=1
+
+while [ $N -le $TIMES ] && [ $EXITCODE -eq 0 ]
+do
+    N=$(( $N + 1 ))
+    $PHPUNIT --filter="$FILTER"
+    EXITCODE=$?
+done

@@ -1,0 +1,85 @@
+#!/opt/homebrew/bin/php
+
+<?php
+
+function jsonToPhpArrayCode($jsonString, $highlight = false) {
+    $array = json_decode($jsonString, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new Exception("JSON decoding error: " . json_last_error_msg());
+    }
+
+    $isIndexedArray = function($array) {
+        if (empty($array)) return true;
+        return array_keys($array) === range(0, count($array) - 1);
+    };
+
+    $arrayToCode = function ($array, $indentLevel = 0) use (&$arrayToCode, &$isIndexedArray, $highlight) {
+        $indent = str_repeat("    ", $indentLevel);
+        $output = "[\n";
+        foreach ($array as $key => $value) {
+            $keyOutput = is_string($key) ? "'" . addslashes($key) . "' => " : "$key => ";
+            if ($highlight) {
+                if (is_string($key)) {
+                    $keyOutput = "\033[32m'" . addslashes($key) . "'\033[0m => ";
+                } else {
+                    $keyOutput = "\033[33m$key\033[0m => ";
+                }
+            }
+
+            if (is_array($value)) {
+                $valueOutput = $arrayToCode($value, $indentLevel + 1);
+            } elseif (is_string($value)) {
+                $valueOutput = "'" . addslashes($value) . "'";
+                if ($highlight) {
+                    $valueOutput = "\033[31m'" . addslashes($value) . "'\033[0m";
+                }
+            } elseif (is_bool($value)) {
+                $valueOutput = $value ? 'true' : 'false';
+                if ($highlight) {
+                    $valueOutput = $value ? "\033[34mtrue\033[0m" : "\033[34mfalse\033[0m";
+                }
+            } elseif (is_null($value)) {
+                $valueOutput = 'null';
+                if ($highlight) {
+                    $valueOutput = "\033[35mnull\033[0m";
+                }
+            } else {
+                $valueOutput = (string) $value;
+                if ($highlight) {
+                    $valueOutput = "\033[33m$value\033[0m";
+                }
+            }
+
+            if (!$isIndexedArray($array)) {
+                $output .= $indent . "    " . $keyOutput . $valueOutput . ",\n";
+            } else {
+                $output .= $indent . "    " . $valueOutput . ",\n";
+            }
+        }
+        return $output . $indent . "]";
+    };
+
+    return $arrayToCode($array);
+}
+
+echo "Paste your JSON here (Ctrl-D to finish input):\n";
+
+$jsonData = stream_get_contents(STDIN);
+
+try {
+    $phpArrayCode = jsonToPhpArrayCode($jsonData, true);
+
+    $pbcopy = popen('pbcopy', 'w');
+    fwrite($pbcopy, jsonToPhpArrayCode($jsonData));
+    pclose($pbcopy);
+
+    echo "\n\n";
+    echo $phpArrayCode . "\n";
+
+    echo "\n\nPHP array code has been copied to clipboard.\n";
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+?>

@@ -1,0 +1,75 @@
+let mapleader=" "
+
+set hlsearch
+set incsearch
+set ignorecase
+set showmode
+set showcmd
+set smartcase
+set surround
+set ideamarks
+set ideajoin
+set highlightedyank
+set multiple-cursors
+
+set clipboard=unnamedplus,unnamed
+
+" English in normal
+let keep_input_source_in_normal="com.apple.keylayout.ABC"
+" set keep-english-in-normal
+
+nnoremap U u
+
+nnoremap L $
+nnoremap H ^
+vnoremap L $
+vnoremap H ^
+
+" Clean char delete
+nnoremap <leader>x "_x
+nnoremap <leader>X "_x
+
+" Select in paretheses
+nnoremap <leader>p vi(
+nnoremap <leader>P vi(
+vnoremap <leader>p vi(
+vnoremap <leader>P vi(
+
+" Select in single quotes
+nnoremap <leader>' vi'
+nnoremap <leader>' vi'
+vnoremap <leader>' vi'
+vnoremap <leader>' vi'
+
+" Select in double quotes
+nnoremap <leader>" vi"
+nnoremap <leader>" vi"
+vnoremap <leader>" vi"
+vnoremap <leader>" vi"
+
+" Select in []
+nnoremap <leader>[ vi[
+vnoremap <leader>[ vi[
+
+" Split
+nmap sv <Action>(SplitVertically)
+
+" Surround
+xnoremap <leader>s xi ()<Esc>P
+xnoremap <leader>s[ xi []<Esc>P
+xnoremap <leader>s] xi []<Esc>P
+xnoremap <leader>s{ xi {}<Esc>P
+xnoremap <leader>s} xi {}<Esc>P
+xnoremap <leader>s' xi ''<Esc>P
+xnoremap <leader>s" xi ""<Esc>P
+
+" Refactoring
+map <leader>rr <Action>(RenameElement)
+map <leader>RR <Action>(Refactorings.QuickListPopupAction)
+
+vnoremap <leader>P "\"_dP
+
+vnoremap ii aBoVk
+
+map ]] <Action>(GotoNextError)
+map [[ <Action>(GotoPreviousError)

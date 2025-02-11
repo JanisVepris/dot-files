@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Get a list of git branches and feed them into fzf for multi-select
+branches=$(git branch | grep -v -e "^\*" -e "^\s*main$" -e "^\s*master$" | sed 's/^[ ]*//;s/[ ]*$//' | fzf --ansi --height 40% --cycle \
+    --marker="✓" --pointer=">" --prompt '>' \
+    --header="Use SPACE or TAB to select, ENTER to delete branches, ESC abort" \
+    --preview "git log -n 5 --oneline refs/heads/{}" \
+    -m --bind 'space:toggle')
+
+# Check if any branches were selected
+if [ -z "$branches" ]; then
+    exit 0
+fi
+
+# Delete each selected branch
+IFS=$'\n' # Set Internal Field Separator to newline for iteration
+echo $branches
+for branch in $branches; do
+    echo "DELETE BRANCH $branch"
+    git branch -D $branch &> /dev/null || echo "Failed to delete $branch. You may need to force delete."
+done

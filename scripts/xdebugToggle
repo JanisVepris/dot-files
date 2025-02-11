@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -L "$XDEBUG_FILE_PATH" ]; then
+    rm -f "$XDEBUG_FILE_PATH"
+    echo "XDebug 🔴"
+else
+    ln -s $HOME/dot-files/configs/php/xdebug.ini "$XDEBUG_FILE_PATH"
+    echo "XDebug 🟢"
+fi
+

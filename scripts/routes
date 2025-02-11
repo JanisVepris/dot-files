@@ -1,0 +1,3 @@
+#! /bin/bash
+
+${SALTZ_DIR}/artisan route:list | fzf

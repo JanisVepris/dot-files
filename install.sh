@@ -1,0 +1,64 @@
+#!/bin/bash
+
+source $DOT_CONFIGS_DIR/zsh/.zshenv
+
+echo "🗂️  Setup directories"
+rm -rf $HOME/.config/nvim
+mkdir -p $HOME/.oh-my-zsh/custom/themes
+mkdir -p $HOME/.config/bat
+
+echo "🟢 Hush login line"
+ln -sf $DOT_FILES_DIR/extra/.hushlogin $HOME/.hushlogin
+
+echo "🟢 Zsh"
+echo "   🔅 .zshenv"
+ln -sf $DOT_CONFIGS_DIR/zsh/.zshenv $HOME/.zshenv
+echo "   🔅 jv theme"
+ln -sf $DOT_CONFIGS_DIR/zsh/janis.zsh-theme $HOME/.oh-my-zsh/custom/themes/janis.zsh-theme
+echo "   🔅 .zshrc"
+ln -sf $DOT_CONFIGS_DIR/zsh/.zshrc $HOME/.zshrc
+
+echo "🟢 Clone ZSH plugins"
+echo "   🔅 zsh-completions"
+git clone --depth 1 --quiet https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 2> /dev/null
+
+echo "   🔅 zsh-syntax-highlighting"
+git clone --depth 1 --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2> /dev/null
+
+echo "   🔅 zsh-bat"
+git clone --depth 1 --quiet https://github.com/fdellwing/zsh-bat.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-bat 2> /dev/null
+
+echo "   🔅 zsh-256color"
+git clone --depth 1 --quiet https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-256color 2> /dev/null
+
+echo "   🔅 zsh-artisan"
+git clone --depth 1 --quiet https://github.com/jessarcher/zsh-artisan.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/artisan 2> /dev/null
+
+echo "   🔅 fzf-tab"
+git clone --depth 1 --quiet https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab 2> /dev/null
+
+echo "🟢 Clone powerline_fonts"
+git clone --depth 1 --quiet https://github.com/powerline/fonts.git $HOME/dot-files/fonts/powerline_fonts 2> /dev/null
+
+echo "🟢 Link config files"
+echo "   🔅 Git"
+ln -sf $DOT_CONFIGS_DIR/git/.gitconfig $HOME/.gitconfig
+ln -sf $DOT_CONFIGS_DIR/git/.gitignore_global $HOME/.gitignore_global
+
+echo "   🔅 Ghostty"
+ln -sf $DOT_CONFIGS_DIR/ghostty $HOME/.config/ghostty
+
+echo "   🔅 Nvim"
+ln -sf $DOT_CONFIGS_DIR/nvim $HOME/.config/nvim
+
+echo "   🔅 Ideavim"
+ln -sf $DOT_CONFIGS_DIR/ideavim/.ideavimrc $HOME/.ideavimrc
+
+echo "   🔅 Bat"
+ln -sf $DOT_CONFIGS_DIR/bat/config $HOME/.config/bat/config
+
+echo "🎹 Install keyboard layout"
+cp -R $DOT_CONFIGS_DIR/keyboard/lt_keylayout.bundle $HOME/Library/Keyboard\ Layouts/
+
+cd $DOT_FILES_DIR
+echo "✅ Done"

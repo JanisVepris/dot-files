@@ -1,0 +1,14 @@
+#!/bin/bash
+
+FILE=/opt/homebrew/etc/php/8.2/conf.d/xhprof.ini
+
+if [ -L "$FILE" ]; then
+    echo "Disabling xhprof"
+    rm -f "$FILE"
+else
+    echo "Enabling xhprof"
+    ln -s $HOME/dot-files/configs/php/xhprof.ini  "$FILE"
+fi
+
+php -v
+pm2 restart laravel

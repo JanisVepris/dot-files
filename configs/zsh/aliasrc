@@ -1,0 +1,19 @@
+alias ..='cd ..'
+alias l='ls -AlhFG -D ""'
+alias ll='ls -AlhFG -D ""'
+
+alias vim='nvim'
+
+alias st='git status'
+alias adda='git add -u; git status'
+alias lg='git lg'
+alias ff='git diff'
+
+alias a='php artisan'
+alias xa='XDEBUG_CONFIG="idekey=PHPSTORM" php artisan'
+
+alias sr='source $DOT_SCRIPTS_DIR/gotoProject'
+
+alias xdon="$HOME/dot-files/scripts/xdebugToggle"
+alias xhprof="$HOME/dot-files/scripts/xhprofToggle"
+alias ideHelper="$HOME/dot-files/scripts/ideHelpers"

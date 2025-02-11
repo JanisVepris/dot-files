@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Check if fzf is installed
+# If not, install via brew
+if ! command -v fzf &> /dev/null; then
+  echo "fzf is not installed. Installing via brew..."
+  brew install fzf
+fi
+
+# Get a list of directories from $CODE_DIR path and choose via fzf
+# If no directory is chosen, exit
+if [ -d "$CODE_DIR" ]; then
+    cd $CODE_DIR
+
+  CHOSEN_DIR=$(find . -maxdepth 1 -type d ! -name '.' | sort | fzf \
+    --ansi \
+    --height 100% \
+    --cycle \
+    --reverse \
+    --inline-info \
+    --header="Select a project:" \
+    --pointer=">" \
+    --prompt 'Project >' \
+    --preview 'ls --color=always -a -1 {}')
+
+  if [ -z "$CHOSEN_DIR" ]; then
+    return
+  fi
+  cd $CODE_DIR/$CHOSEN_DIR
+else
+  echo "Code directory not found. Check your \$CODE_DIR path. Exiting..."
+  exit
+fi
