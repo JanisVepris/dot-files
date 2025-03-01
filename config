@@ -57,8 +57,5 @@ ln -sf $DOT_CONFIGS_DIR/ideavim/.ideavimrc $HOME/.ideavimrc
 echo "   🔅 Bat"
 ln -sf $DOT_CONFIGS_DIR/bat/config $HOME/.config/bat/config
 
-echo "🎹 Install keyboard layout"
-cp -R $DOT_CONFIGS_DIR/keyboard/lt_keylayout.bundle $HOME/Library/Keyboard\ Layouts/
-
 cd $DOT_FILES_DIR
 echo "✅ Done"
