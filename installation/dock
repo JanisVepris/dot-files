@@ -1,0 +1,35 @@
+#!/bin/bash
+
+source ./installation/functions
+
+function setup_dock() {
+    defaults write com.apple.dock show-recents -bool false
+    defaults write com.apple.dock tilesize -int 48
+
+    defaults write com.apple.dock mineffect -string scale
+    defaults write com.apple.dock minimize-to-application -bool true
+
+    defaults write com.apple.dock magnification -bool true
+    defaults write com.apple.dock largesize -int 65
+    defaults write com.apple.dock mod-count -int 16
+
+    defaults write com.apple.dock autohide -bool true
+    defaults write com.apple.dock autohide-time-modifier -float 0.15
+    defaults write com.apple.dock autohide-delay -int 0
+
+    dockutil --remove all
+    dockutil --add /Applications/Arc.app
+    dockutil --add /Applications/Spotify.app
+    dockutil --add /Applications/Ghostty.app
+    dockutil --add /Applications/Slack.app
+    dockutil --add "$HOME/Applications/PhpStorm.app"
+
+    killall Dock
+}
+
+if gum confirm "Do you want to apply Dock MacOS settings?"; then
+    gum spin --spinner dot --title "Applying dock settings" -- setup_dock
+    big_message "✅ Dock settings applied"
+else
+    big_message "↓ Skipping Dock settings"
+fi

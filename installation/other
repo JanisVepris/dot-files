@@ -1,0 +1,25 @@
+#!/bin/bash
+
+source ./installation/functions
+
+OPTIONS=(
+    "font-hack-nerd-font"
+    "1password-cli"
+    "neovim"
+    "speedtest-cli"
+    "tldr"
+    "dockutil"
+)
+
+SELECTED=$(selection "📦 Select other stuff to install" "${OPTIONS[@]}")
+
+if [[ -z "$SELECTED" ]]; then
+    big_message "No packages selected"
+    exit 0
+fi
+
+for SELECTION in $SELECTED; do
+    brew_install "$SELECTION"
+done
+
+big_message "✅ Done."

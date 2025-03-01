@@ -1,0 +1,30 @@
+#!/bin/bash
+
+source ./installation/functions
+
+OPTIONS=(
+    "git"
+    "font-monaspace"
+    "curl"
+    "wget"
+    "exiftool"
+    "zplug"
+    "tree"
+    "watch"
+    "ripgrep"
+    "htop"
+    "bat"
+)
+
+SELECTED=$(selection "🛠️ Select tools to install" "${OPTIONS[@]}")
+
+if [[ -z "$SELECTED" ]]; then
+    big_message "No tools selected"
+    exit 0
+fi
+
+for SELECTION in $SELECTED; do
+    brew_install "$SELECTION"
+done
+
+big_message "✅ Done."

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+source ./installation/functions
+
+function setup_trackpad() {
+    defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true
+    defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+    defaults write com.apple.AppleMultstouchTrackpad FirstClickThreshold -bool true
+    defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -bool true
+}
+
+if gum confirm "Do you want to apply Trackpad MacOS settings?"; then
+    gum spin --spinner dot --title "Applying Trackpad settings" -- setup_trackpad
+    big_message "✅ Trackpad settings applied"
+else
+    big_message "👍 Skipping Trackpad settings"
+fi
+

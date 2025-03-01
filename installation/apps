@@ -1,0 +1,34 @@
+#!/bin/bash
+
+source ./installation/functions
+
+OPTIONS=(
+    "ghostty"
+    "arc"
+    "google-chrome"
+    "spotify"
+    "elgato-control-center"
+    "1password"
+    "visual-studio-code"
+    "whatsapp"
+    "obsidian"
+    "google-drive"
+    "raycast"
+    "insomnia"
+    "jetbrains-toolbox"
+    "slack"
+)
+
+SELECTED=$(selection "🧩 Select dev tools to install" "${OPTIONS[@]}")
+
+if [[ -z "$SELECTED" ]]; then
+    big_message "No apps selected"
+    exit 0
+fi
+
+for SELECTION in $SELECTED; do
+    brew_install_cask "$SELECTION"
+done
+
+big_message "✅ Done."
+

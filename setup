@@ -1,0 +1,42 @@
+#!/bin/bash
+
+source ./installation/functions
+
+if ! command -v brew &> /dev/null
+then
+    echo "📦 Homebrew is not installed. Please install Homebrew first. https://brew.sh/"
+    exit
+fi
+
+if ! command -v gum &> /dev/null
+then
+    echo "📦 Gum is not installed. Installing gum..."
+    brew install gum
+    echo "📦 Gum installed. Please run the script again."
+    exit
+fi
+
+big_message "🚀 Starting setup"
+
+if ! command -v fzf &> /dev/null
+then
+    big_message "📦 Fzf is not installed. Installing fzf..."
+    gum spin --spinner dot -- brew install fzf
+    big_message "📦 Fzf installed. Please run the script again."
+    exit
+fi
+
+./installation/dock
+./installation/trackpad
+./installation/tooling
+./installation/dev
+./installation/other
+./installation/apps
+
+gum spin \
+    --spinner dot \
+    --title "🧹 Cleaning up" \
+    -- brew cleanup
+
+big_message "🎉 Setup complete 🎉"
+

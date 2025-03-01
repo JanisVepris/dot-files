@@ -1,0 +1,34 @@
+#!/bin/bash
+
+function big_message() {
+    gum style \
+        --foreground 212 --border-foreground 212 --border double \
+        --align center --width 50 --margin "1 1" --padding "1 1" \
+        "$1"
+}
+
+function brew_install_cask() {
+    gum spin \
+        --spinner dot \
+        --title "Installing 🧩 $1" \
+        -- brew install --cask "$1"
+}
+
+function brew_install() {
+    gum spin \
+        --spinner dot \
+        --title "Installing 📦 $1" \
+        -- brew install "$1"
+}
+
+function selection() {
+    local header="$1"
+    shift
+    local options=("$@")
+
+    local default_selection
+    default_selection=$(printf "%s\n" "${options[@]}")
+
+    # Store the selection in a variable
+    echo "$default_selection" | gum choose --no-limit --header "$header" --height 20 "${options[@]}"
+}

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+source ./installation/functions
+
+OPTIONS=(
+    "php@8.3"
+    "composer"
+    "mysql"
+    "node"
+    "sqlite"
+    "python"
+    "go"
+    "icu4c"
+    "redis"
+    "awscli"
+)
+
+SELECTED=$(selection "💻 Select dev tools to install" "${OPTIONS[@]}")
+
+if [[ -z "$SELECTED" ]]; then
+    big_message "No dev tools selected"
+    exit 0
+fi
+
+for SELECTION in $SELECTED; do
+    brew_install "$SELECTION"
+done
+
+big_message "✅ Done."
