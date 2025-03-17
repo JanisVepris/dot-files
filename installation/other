@@ -14,7 +14,7 @@ OPTIONS=(
 SELECTED=$(selection "📦 Select other stuff to install" "${OPTIONS[@]}")
 
 if [[ -z "$SELECTED" ]]; then
-    big_message "No packages selected"
+    big_message "👍 No packages selected"
     exit 0
 fi
 

@@ -21,6 +21,16 @@ function brew_install() {
         -- brew install "$1"
 }
 
+function show_spinner() {
+    local header="$1"
+    shift
+    local command="$@"
+    gum spin \
+        --spinner dot \
+        --title "$header" \
+        -- $command
+}
+
 function selection() {
     local header="$1"
     shift
@@ -29,6 +39,5 @@ function selection() {
     local default_selection
     default_selection=$(printf "%s\n" "${options[@]}")
 
-    # Store the selection in a variable
     echo "$default_selection" | gum choose --no-limit --header "$header" --height 20 "${options[@]}"
 }

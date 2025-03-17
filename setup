@@ -1,11 +1,12 @@
 #!/bin/bash
 
+source ./configs/zsh/.zshenv
 source ./installation/functions
 
 if ! command -v brew &> /dev/null
 then
     echo "📦 Homebrew is not installed. Please install Homebrew first. https://brew.sh/"
-    exit
+    exit 1
 fi
 
 if ! command -v gum &> /dev/null
@@ -21,24 +22,18 @@ big_message "🚀 Starting setup"
 if ! command -v fzf &> /dev/null
 then
     big_message "📦 Fzf is not installed. Installing fzf..."
-    gum spin --spinner dot -- brew install fzf
+    brew_install fzf
     big_message "📦 Fzf installed. Please run the script again."
     exit
 fi
 
 ./installation/dock
 ./installation/trackpad
+./installation/keyboard
 ./installation/tooling
 ./installation/dev
 ./installation/other
 ./installation/apps
-
-if gum confirm "🇱🇹 Install keyboard layout?"; then
-    cp -R $DOT_CONFIGS_DIR/keyboard/lt_keylayout.bundle $HOME/Library/Keyboard\ Layouts/
-    big_message "🇱🇹 Keyboard layout installed"
-else
-    big_message "↓ Skipping keyboard layout"
-fi
 
 gum spin \
     --spinner dot \

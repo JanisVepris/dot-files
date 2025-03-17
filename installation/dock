@@ -31,5 +31,5 @@ if gum confirm "Do you want to apply Dock MacOS settings?"; then
     gum spin --spinner dot --title "Applying dock settings" -- setup_dock
     big_message "✅ Dock settings applied"
 else
-    big_message "↓ Skipping Dock settings"
+    big_message "👍 Skipping Dock settings"
 fi

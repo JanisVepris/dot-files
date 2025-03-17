@@ -22,7 +22,7 @@ OPTIONS=(
 SELECTED=$(selection "🧩 Select dev tools to install" "${OPTIONS[@]}")
 
 if [[ -z "$SELECTED" ]]; then
-    big_message "No apps selected"
+    big_message "👍 No apps selected"
     exit 0
 fi
 
