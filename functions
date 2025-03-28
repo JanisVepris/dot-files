@@ -41,3 +41,11 @@ function selection() {
 
     echo "$default_selection" | gum choose --no-limit --header "$header" --height 20 "${options[@]}"
 }
+
+function selection_single() {
+    local header="$1"
+    shift
+    local options=("$@")
+
+    gum choose --header "$header" --height 20 "${options[@]}"
+}

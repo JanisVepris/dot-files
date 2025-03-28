@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./installation/functions
+source $DOT_FILES_DIR/functions
 
 OPTIONS=(
     "font-hack-nerd-font"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./installation/functions
+source $DOT_FILES_DIR/functions
 
 function setup_trackpad() {
     defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true

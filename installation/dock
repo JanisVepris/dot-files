@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./installation/functions
+source $DOT_FILES_DIR/functions
 
 function setup_dock() {
     defaults write com.apple.dock show-recents -bool false

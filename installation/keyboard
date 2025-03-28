@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./installation/functions
+source $DOT_FILES_DIR/functions
 
 if gum confirm "🇱🇹 Install keyboard layout?"; then
     cp -R $DOT_CONFIGS_DIR/keyboard/lt_keylayout.bundle $HOME/Library/Keyboard\ Layouts/
