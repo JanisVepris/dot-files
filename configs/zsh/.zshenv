@@ -2,6 +2,7 @@ export DOT_FILES_DIR=$HOME/dot-files
 export DOT_SCRIPTS_DIR=$DOT_FILES_DIR/scripts
 export DOT_CONFIGS_DIR=$DOT_FILES_DIR/configs
 export DOT_WORK_DIR=$DOT_FILES_DIR/work-dot-files
+export DOT_UTIL_DIR=$DOT_FILES_DIR/util
 
 export PATH=$DOT_SCRIPTS_DIR:$PATH
 export PATH=$DOT_WORK_DIR/scripts:$PATH
@@ -9,6 +10,8 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
+
+export BASH_ENV=$DOT_FILES_DIR/bashUtils
 
 export CODE_DIR=$HOME/code
 
@@ -38,6 +41,12 @@ export C_LIGHT_CYAN='\033[1;36m'
 export C_LIGHT_RED='\033[1;31m'
 export C_LIGHT_PURPLE='\033[1;35m'
 
+source $DOT_FILES_DIR/util/gum_functions
+
 if [ -f "$DOT_WORK_DIR/.env" ]; then
     source $DOT_WORK_DIR/.env
+fi
+
+if [ -f "$DOT_WORK_DIR/.aliases" ]; then
+    source $DOT_WORK_DIR/.aliases
 fi

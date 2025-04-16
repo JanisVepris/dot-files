@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source ./configs/zsh/.zshenv
-source $DOT_FILES_DIR/functions
 
 big_message "🧩 Configuration wizard"
 

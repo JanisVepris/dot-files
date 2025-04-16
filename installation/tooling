@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source $DOT_FILES_DIR/functions
-
 OPTIONS=(
     "git"
     "font-monaspace"

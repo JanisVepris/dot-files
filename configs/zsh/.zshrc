@@ -20,7 +20,7 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 stty -ixon
 
-source $HOME/dot-files/configs/zsh/aliasrc
+source $DOT_FILES_DIR/configs/zsh/aliasrc
 ulimit -n 8192
 TERM=xterm-256color
 
