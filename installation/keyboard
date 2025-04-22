@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if gum confirm "🇱🇹 Install keyboard layout?"; then
-    cp -R $DOT_CONFIGS_DIR/keyboard/lt_keylayout.bundle $HOME/Library/Keyboard\ Layouts/
+    cp -R $DOT_CONFIGS_DIR/keyboard/Lithuanian_Proper.bundle $HOME/Library/Keyboard\ Layouts/
     big_message "🇱🇹 Keyboard layout installed"
 else
     big_message "👍 Skipping keyboard layout"

@@ -3,15 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>org.sil.ukelele.keyboardlayout.lithuanian(numeric)</string>
+	<string>org.sil.ukelele.keyboardlayout.lithuanianproper</string>
 	<key>CFBundleName</key>
-	<string>Lithuanian (numeric)</string>
+	<string>Lithuanian_Proper</string>
 	<key>CFBundleVersion</key>
-	<string>3.1.0</string>
-	<key>KLInfo_Lithuanian (numeric)</key>
+	<string>1.0</string>
+	<key>KLInfo_Lithuanian - Proper</key>
 	<dict>
+		<key>TICapsLockLanguageSwitchCapable</key>
+		<false/>
+		<key>TISIconIsTemplate</key>
+		<true/>
 		<key>TISInputSourceID</key>
-		<string>org.sil.ukelele.keyboardlayout.lithuanian(numeric).lithuanian(numeric)</string>
+		<string>org.sil.ukelele.keyboardlayout.lithuanianproper.lithuanian-proper</string>
 		<key>TISIntendedLanguage</key>
 		<string>lt-LT</string>
 	</dict>

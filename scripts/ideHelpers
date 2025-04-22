@@ -4,3 +4,4 @@ php artisan ide-helper:eloquent -n
 php artisan ide-helper:generate -n
 php artisan ide-helper:meta -n
 php artisan ide-helper:models -n -M
+composer cs-fix
