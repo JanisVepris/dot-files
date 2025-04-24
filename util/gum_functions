@@ -7,6 +7,7 @@ function big_message() {
 
 function brew_install_cask() {
     gum spin \
+        --show-error \
         --spinner dot \
         --title "Installing 🧩 $1" \
         -- brew install --cask "$1"
@@ -14,6 +15,7 @@ function brew_install_cask() {
 
 function brew_install() {
     gum spin \
+        --show-error \
         --spinner dot \
         --title "Installing 📦 $1" \
         -- brew install "$1"
@@ -24,9 +26,10 @@ function show_spinner() {
     shift
     local command="$@"
     gum spin \
+        --show-error \
         --spinner dot \
         --title "$header" \
-        -- $command
+        -- bash -lc "$command"
 }
 
 function selection() {

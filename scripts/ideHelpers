@@ -1,7 +1,17 @@
 #!/bin/bash
 
-php artisan ide-helper:eloquent -n
-php artisan ide-helper:generate -n
-php artisan ide-helper:meta -n
-php artisan ide-helper:models -n -M
-composer cs-fix
+function runHelper() {
+    php artisan ide-helper:eloquent -n -q
+    php artisan ide-helper:generate -n -q
+    php artisan ide-helper:meta -n -q
+    php artisan ide-helper:models -n -M -q
+}
+
+function runPint() {
+    ./vendor/bin/pint --dirty format
+}
+
+export -f runHelper runPint
+
+show_spinner "Running IDE Helper" runHelper
+show_spinner "Running Pint" runPint
