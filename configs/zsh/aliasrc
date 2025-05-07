@@ -16,4 +16,3 @@ alias sr='source $DOT_SCRIPTS_DIR/gotoProject'
 
 alias xdon="$HOME/dot-files/scripts/xdebugToggle"
 alias xhprof="$HOME/dot-files/scripts/xhprofToggle"
-alias ideHelper="$HOME/dot-files/scripts/ideHelpers"
