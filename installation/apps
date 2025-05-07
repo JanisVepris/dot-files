@@ -3,6 +3,7 @@
 OPTIONS=(
     "ghostty"
     "arc"
+    "age"
     "google-chrome"
     "spotify"
     "elgato-control-center"
