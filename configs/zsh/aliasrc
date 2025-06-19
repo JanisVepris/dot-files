@@ -12,6 +12,9 @@ alias ff='git diff'
 alias a='php artisan'
 alias xa='XDEBUG_CONFIG="idekey=PHPSTORM" php artisan'
 
+alias stan='composer stan'
+alias tst='a test --parallel'
+
 alias sr='source $DOT_SCRIPTS_DIR/gotoProject'
 
 alias xdon="$HOME/dot-files/scripts/xdebugToggle"
