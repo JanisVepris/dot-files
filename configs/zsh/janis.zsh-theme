@@ -2,8 +2,8 @@
 
 PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
 
-precmd() { print -rP "%F{147}┌ %m%B%f %F{215}%~%f%b" }
-PROMPT=$'%B%F{147}└❯%f%b '
+precmd() { print -rP "%F{blue}┌ %m%B%f %F{yellow}%~%f%b" }
+PROMPT=$'%B%F{blue}└❯%f%b '
 
 RPROMPT=''
 

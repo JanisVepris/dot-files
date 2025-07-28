@@ -4,7 +4,7 @@ return {
             vim.cmd.colorscheme "catppuccin"
         end,
         opts = {
-            flavour = "frappe", -- latte, frappe, macchiato, mocha
+            flavour = "auto", -- latte, frappe, macchiato, mocha
             background = { -- :h background
                 light = "latte",
                 dark = "frappe",

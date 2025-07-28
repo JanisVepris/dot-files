@@ -10,7 +10,7 @@ cursor-style-blink = false
 adjust-cursor-thickness = 2
 title = Terminal
 
-theme = janis
+theme = dark:nord,light:nord-light
 
 macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = hidden

@@ -12,18 +12,47 @@ cursor-text = #fefefe
 selection-foreground = #000000
 selection-background = #4155f5
 
+# black
 palette = 0=#686868
+
+# red
 palette = 1=#f19e48
+
+# green
 palette = 2=#9fb97d
+
+# yellow
 palette = 3=#fcf371
+
+# blue
 palette = 4=#4ca8e3
+
+# magenta
 palette = 5=#d6a5f7
+
+# cyan
 palette = 6=#b6d6fa
+
+# white
 palette = 7=#feffff
+
+# bright black
 palette = 8=#676767
+
+# bright red
 palette = 9=#f19e48
+
+# bright green
 palette = 11=#c8f48a
+
+# bright yellow
 palette = 12=#fefb9c
+
+# bright blue
 palette = 13=#4ba8e3
+
+# bright magenta
 palette = 14=#cb8ef5
+
+# bright white
 palette = 15=#b6d5fb

@@ -24,6 +24,12 @@ source $DOT_FILES_DIR/configs/zsh/aliasrc
 ulimit -n 8192
 TERM=xterm-256color
 
+ZSH_HIGHLIGHT_STYLES[command]="fg=$DOT_C_ACCENT,bold"
+ZSH_HIGHLIGHT_STYLES[arg0]="fg=$DOT_C_SECONDARY"
+ZSH_HIGHLIGHT_STYLES[autodirectory]="fg=$DOT_C_DIM,underline"
+ZSH_HIGHLIGHT_STYLES[global-alias]="fg=$DOT_C_SECONDARY,underline"
+ZSH_HIGHLIGHT_STYLES[suffix-alias]="fg=$DOT_C_SECONDARY,undeline"
+
 # bun completions
 # [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 

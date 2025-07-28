@@ -1,0 +1,64 @@
+
+font-family = "Operator Mono Lig"
+font-style = "Medium"
+font-size = 18
+font-thicken = false
+
+background = #2f3032
+
+# background = #2E3440
+foreground = #D8DEE9
+
+cursor-color = #eb503f
+cursor-text = #fefefe
+
+selection-foreground = #D8DEE9
+selection-background = #3B4252
+
+# black
+palette = 0=#3B4252
+
+# red
+palette = 1=#BF616A
+
+# green
+palette = 2=#A3BE8C
+
+# yellow
+palette = 3=#EBCB8B
+
+# blue
+palette = 4=#81A1C1
+
+# magenta
+palette = 5=#B48EAD
+
+# cyan
+palette = 6=#88C0D0
+
+# white
+palette = 7=#E5E9F0
+
+# bright black
+palette = 8=#4C566A
+
+# bright red
+palette = 9=#BF616A
+
+# bright green
+palette = 10=#A3BE8C
+
+# bright yellow
+palette = 11=#EBCB8B
+
+# bright blue
+palette = 12=#81A1C1
+
+# bright magenta
+palette = 13=#B48EAD
+
+# bright cyan
+palette = 14=#8FBCBB
+
+# bright white
+palette = 15=#ECEFF4

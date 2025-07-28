@@ -3,6 +3,9 @@ export DOT_SCRIPTS_DIR=$DOT_FILES_DIR/scripts
 export DOT_CONFIGS_DIR=$DOT_FILES_DIR/configs
 export DOT_WORK_DIR=$DOT_FILES_DIR/work-dot-files
 export DOT_UTIL_DIR=$DOT_FILES_DIR/util
+export DOT_C_ACCENT="#6090D9"
+export DOT_C_SECONDARY="#80AE59"
+export DOT_C_DIM="#696999"
 
 export PATH=$DOT_SCRIPTS_DIR:$PATH
 export PATH=$DOT_WORK_DIR/scripts:$PATH
@@ -40,6 +43,11 @@ export C_LIGHT_GREEN='\033[1;32m'
 export C_LIGHT_CYAN='\033[1;36m'
 export C_LIGHT_RED='\033[1;31m'
 export C_LIGHT_PURPLE='\033[1;35m'
+
+export GUM_INPUT_CURSOR_FOREGROUND="$DOT_ACCENT_COLOR"
+export GUM_INPUT_PROMPT_FOREGROUND="$DOT_ACCENT_COLOR"
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=$DOT_C_DIM,italic,bold,underline"
 
 source $DOT_FILES_DIR/bashUtils
 
