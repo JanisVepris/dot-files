@@ -18,9 +18,11 @@ export BASH_ENV=$DOT_FILES_DIR/bashUtils
 
 export CODE_DIR=$HOME/code
 
-export XDEBUG_FILE_PATH=/opt/homebrew/etc/php/8.3/conf.d/xdebug.ini
+export XDEBUG_FILE_PATH=/opt/homebrew/etc/php/8.4/conf.d/xdebug.ini
 
 export JAVA_HOME="/usr/libexec/java_home"
+
+export EZA_CONFIG_DIR="$DOT_CONFIGS_DIR/eza"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
