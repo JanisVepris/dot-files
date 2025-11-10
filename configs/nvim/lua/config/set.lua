@@ -31,10 +31,10 @@ vim.opt.colorcolumn = "0"
 
 vim.opt.clipboard = "unnamedplus"
 
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 vim.opt.laststatus = 2
 
-vim.opt.fillchars = "eob: "
+vim.opt.fillchars = "eob: " -- remove the end of buffer ~ symbols
 
 vim.filetype.add({ extension = { templ = "templ" } })

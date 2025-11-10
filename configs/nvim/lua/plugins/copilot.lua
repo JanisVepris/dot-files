@@ -1,4 +1,4 @@
-return {
+return { -- Copilot
 	{
 		"github/copilot.vim",
 		init = function()

@@ -12,7 +12,7 @@ plugins=(
  zsh-bat
  zsh-256color
  fzf-tab
- history
+ # history
  artisan
 )
 

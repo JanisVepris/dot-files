@@ -1,5 +1,8 @@
 #! /bin/bash
 
-${SALTZ_DIR}/artisan route:list --json | jq -r '.[] | "\(.uri)\t\(.name)"' |  fzf --prompt="" --no-separator --input-border=rounded --info=hidden --cycle --no-scrollbar --list-border=rounded 
+${SALTZ_DIR}/artisan route:list --json \
+  | jq -r 'sort_by(.name)[] | "\(.uri)\t\(.name)\t\(.action)"' \
+  | fzf --prompt="" --no-separator --input-border=rounded --info=hidden --cycle --no-scrollbar --list-border=rounded
+# ${SALTZ_DIR}/artisan route:list --json | jq -r '.[] | "\(.uri)\t\(.name)\t\(.action)"' |  fzf --prompt="" --no-separator --input-border=rounded --info=hidden --cycle --no-scrollbar --list-border=rounded 
 
 # ${SALTZ_DIR}/artisan route:list | fzf

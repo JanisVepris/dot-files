@@ -1,4 +1,4 @@
-return {
+return { -- a pretty list of diagnostics
     {
         "folke/trouble.nvim",
         opts = {},

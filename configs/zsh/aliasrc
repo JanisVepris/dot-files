@@ -2,7 +2,7 @@ alias ..='cd ..'
 alias l='ls -AlhFG -D ""'
 alias ll='ls -AlhFG -D ""'
 
-alias l='eza --oneline --long --classify=always --icons=auto --hyperlink --time-style=long-iso --group-directories-first'
+alias l='eza --all --oneline --long --classify=always --icons=auto --hyperlink --time-style=long-iso --group-directories-first'
 
 alias vim='nvim'
 

@@ -1,100 +1,84 @@
 return {
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v4.x",
+		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- LSP Support
-			"neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			-- Autocompletion
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
-			"L3MON4D3/LuaSnip",
 		},
 		config = function()
-			local lsp = require("lsp-zero")
-			local lspconfig = require("lspconfig")
-
-			lsp.extend_lspconfig({
-				sign_text = true,
-				lsp_attach = function(_, bufnr)
-					lsp.default_keymaps({ buffer = bufnr })
-				end,
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
-			})
-
-			lsp.format_on_save({
-				format_opts = {
-					async = false,
-					timeout_ms = 10000,
+			vim.diagnostic.config({
+				float = {
+					focusable = false,
+					style = "minimal",
+					border = "rounded",
+					source = "always",
+					header = "",
+					prefix = "",
 				},
 			})
 
-			require("mason").setup({})
+			local on_attach = function()
+				local telescope = require("telescope.builtin")
+				vim.keymap.set("n", "gd", telescope.lsp_definitions)
+				vim.keymap.set("n", "gD", telescope.lsp_type_definitions)
+				vim.keymap.set("n", "gi", telescope.lsp_implementations)
+				vim.keymap.set("n", "gr", telescope.lsp_references)
+				vim.keymap.set("n", "rn", vim.lsp.buf.rename)
+				vim.keymap.set("n", "ca", vim.lsp.buf.code_action)
+			end
+
+			require("mason").setup()
 			require("mason-lspconfig").setup({
+				automatic_installation = true,
 				ensure_installed = {
-					"vtsls", -- Typescript
-					"eslint",
-					"lua_ls",
 					"gopls",
-					"templ",
-					"html",
-					"tailwindcss",
-					"cssls",
-				},
-				handlers = {
-					function(server_name)
-						if server_name == "tsserver" then
-							server_name = "ts_ls"
-						else
-							require("lspconfig")[server_name].setup({})
-						end
-					end,
+					"lua_ls",
+					"stylua",
 				},
 			})
 
-			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-			lspconfig.phpactor.setup({})
-			lspconfig.gopls.setup({})
-			lspconfig.html.setup({
-				filetypes = { "html", "templ" },
-			})
-			lspconfig.ts_ls.setup({
-				enabled = false,
+			vim.lsp.config("gopls", {
+				on_attach = on_attach,
 				settings = {
-					implicitProjectConfig = true,
+					gopls = {
+						gofumpt = true,
+						staticcheck = true,
+						semanticTokens = true,
+					},
 				},
 			})
-			lspconfig.vtsls.setup({})
 
-			local cmp = require("cmp")
-			local cmp_format = require("lsp-zero").cmp_format({ details = true })
-
-			local cmp_mapping = {
-				["<Tab>"] = cmp.mapping(function(fallback)
-					-- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-					if cmp.visible() then
-						local entry = cmp.get_selected_entry()
-						if not entry then
-							cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-						else
-							cmp.confirm()
-						end
-					else
-						fallback()
-					end
-				end, { "i", "s", "c" }),
-			}
-
-			cmp.setup({
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
 				},
-				formatting = cmp_format,
-				mapping = cmp.mapping.preset.insert(cmp_mapping),
 			})
+			vim.lsp.enable("gopls")
+			vim.lsp.enable("lua_ls")
 		end,
+	},
+	{
+		"Saghen/blink.cmp",
+		opts = { -- code completion
+			fuzzy = { implementation = "lua" },
+			keymap = {
+				["<CR>"] = { "accept", "fallback" },
+			},
+			completion = {
+				menu = { border = "rounded" },
+				documentation = { auto_show = true, window = { border = "rounded" } },
+				ghost_text = { enabled = true },
+				list = {
+					selection = {
+						preselect = true,
+						auto_insert = true,
+					},
+				},
+			},
+		},
 	},
 }

@@ -1,8 +1,22 @@
+function ColorMyPencils()
+    -- transparent background
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { bg = "none" })
+end
+
 return {
-    { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 9998,
-        init = function()
-            vim.cmd.colorscheme "catppuccin"
-        end,
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        lazy = false,
+        priority = 1000,
         opts = {
             flavour = "auto", -- latte, frappe, macchiato, mocha
             background = { -- :h background
@@ -10,10 +24,14 @@ return {
                 dark = "frappe",
             },
             transparent_background = true, -- disables setting the background color.
+            float = {
+                transparent = true,
+                solid = false,
+            },
             show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
             term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
             dim_inactive = {
-                enabled = true, -- dims the background color of inactive window
+                enabled = false, -- dims the background color of inactive window
             },
             styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
                 comments = { "italic" }, -- Change the style of comments
@@ -33,5 +51,10 @@ return {
                 harpoon = true,
             },
         },
-    }
+        config = function(_, opts)
+            require("catppuccin").setup(opts)
+            vim.cmd.colorscheme("catppuccin")
+            ColorMyPencils()
+        end,
+    },
 }

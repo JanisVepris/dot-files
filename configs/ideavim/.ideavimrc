@@ -56,12 +56,12 @@ nmap sv <Action>(SplitVertically)
 
 " Surround
 xnoremap <leader>s xi ()<Esc>P
-xnoremap <leader>s[ xi []<Esc>P
-xnoremap <leader>s] xi []<Esc>P
-xnoremap <leader>s{ xi {}<Esc>P
-xnoremap <leader>s} xi {}<Esc>P
-xnoremap <leader>s' xi ''<Esc>P
-xnoremap <leader>s" xi ""<Esc>P
+xnoremap <leader>s[ xi[]<Esc>P
+xnoremap <leader>s] xi[]<Esc>P
+xnoremap <leader>s{ xi{}<Esc>P
+xnoremap <leader>s} xi{}<Esc>P
+xnoremap <leader>s' xi''<Esc>P
+xnoremap <leader>s" xi""<Esc>P
 
 " Refactoring
 map <leader>rr <Action>(RenameElement)
