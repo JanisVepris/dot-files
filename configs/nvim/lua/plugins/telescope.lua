@@ -9,6 +9,17 @@ return {
             "nvim-telescope/telescope-file-browser.nvim",
         },
         opts = {
+            defaults = {
+                sorting_strategy = "ascending",
+                layout_config = {
+                    horizontal = {
+                        prompt_position = "top",
+                        width = 0.9,
+                        preview_width = 0.5,
+                    },
+                },
+
+            },
             pickers = {
                 find_files = {
                     find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
