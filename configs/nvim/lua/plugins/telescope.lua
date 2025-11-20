@@ -18,7 +18,6 @@ return {
                         preview_width = 0.5,
                     },
                 },
-
             },
             pickers = {
                 find_files = {
@@ -46,15 +45,19 @@ return {
         end,
         keys = {
             { "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR>" },
-            { "<leader>=", builtin.lsp_document_symbols },
             { "<leader>pf", builtin.find_files },
             { "<leader>pg", builtin.live_grep },
             { "<leader>ph", builtin.help_tags },
             { "<leader>pb", builtin.buffers },
-            { "<leader>ee", builtin.oldfiles },
+            { "<leader>ps", builtin.lsp_document_symbols },
             { "<C-p>", builtin.git_files },
             { "<leader>gd", builtin.lsp_definitions },
-            { "<leader>ps", function() builtin.grep_string({ search = vim.fn.input("Grep > ") }) end },
+            -- {
+            --     "<leader>ps",
+            --     function()
+            --         builtin.grep_string({ search = vim.fn.input("Grep > ") })
+            --     end,
+            -- },
         },
     },
 }

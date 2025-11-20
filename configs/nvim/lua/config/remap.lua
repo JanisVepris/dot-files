@@ -3,7 +3,7 @@ vim.g.maplocalleader = "\\"
 
 local map = vim.keymap.set
 
-map("n", "<leader>pv", vim.cmd.Ex) -- netwr
+map("n", "<leader>pv", vim.cmd.Ex) -- open netwr
 
 map("n", "J", "mzJ`z") -- cursor remains in place when joining line
 
@@ -19,6 +19,7 @@ end)
 map("n", "<leader>[", vim.cmd.BufferPrevious)
 map("n", "<leader>]", vim.cmd.BufferNext)
 map("n", "<leader>w", vim.cmd.BufferClose)
+map("n", "<leader>W", "<cmd>wa|%bd|e#|bd#<CR>")
 map("n", "<leader>T", vim.cmd.BufferClose)
 
 -- windows navigation
@@ -26,7 +27,6 @@ map("n", "<leader><Left>", "<C-W><Left>")
 map("n", "<leader><Right>", "<C-W><Right>")
 map("n", "<leader><Up>", "<C-W><Up>")
 map("n", "<leader><Down>", "<C-W><Down>")
-map("n", "<leader>W", "<cmd>:only<CR>")
 
 map("v", "ii", "aBoVo")
 map("o", "ii", ":normal vii<CR>")
