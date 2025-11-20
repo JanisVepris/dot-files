@@ -10,8 +10,14 @@ OPTIONS=(
     "tree"
     "watch"
     "ripgrep"
-    "htop"
+    "neovim"
+    "btop"
     "bat"
+    "jless"
+    "jq"
+    "eza"
+    "gum"
+    "tldr"
 )
 
 SELECTED=$(selection "🛠️ Select tools to install" "${OPTIONS[@]}")

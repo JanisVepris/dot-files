@@ -1,13 +1,15 @@
 #!/bin/bash
 
 OPTIONS=(
-    "php@8.3"
+    "php@8.4"
+    "php-intl"
     "composer"
     "mysql"
     "node"
     "sqlite"
     "python"
     "go"
+    "bun"
     "icu4c"
     "redis"
     "awscli"

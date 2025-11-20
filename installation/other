@@ -3,9 +3,7 @@
 OPTIONS=(
     "font-hack-nerd-font"
     "1password-cli"
-    "neovim"
     "speedtest-cli"
-    "tldr"
     "dockutil"
 )
 
@@ -21,3 +19,4 @@ for SELECTION in $SELECTED; do
 done
 
 big_message "✅ Done."
+
