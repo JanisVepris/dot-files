@@ -29,6 +29,12 @@ vnoremap H ^
 nnoremap <leader>x "_x
 nnoremap <leader>X "_x
 
+" Navigation
+nmap <leader>pf <Action>(GotoFile)
+" nmap <leader>ps <Action>(GotoSymbol)
+nmap <leader>ps <Action>(FileStructurePopup)
+nmap <leader>pg <Action>(FindInPath)
+
 " Select in paretheses
 nnoremap <leader>p vi(
 nnoremap <leader>P vi(
