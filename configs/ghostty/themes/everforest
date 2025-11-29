@@ -3,7 +3,7 @@ font-style = "Medium"
 font-size = 18
 font-thicken = false
 
-background = #2f3032
+background = #2D353B
 
 foreground = #D8DEE9
 
@@ -14,49 +14,50 @@ selection-foreground = #D8DEE9
 selection-background = #3B4252
 
 # black
-palette = 0=#3B4252
+palette = 0=#343F44
 
 # red
-palette = 1=#BF616A
+palette = 1=#E67D80
 
 # green
-palette = 2=#A3BE8C
+palette = 2=#A7BF80
 
 # yellow
-palette = 3=#EBCB8B
+palette = 3=#DBBC7F
 
 # blue
-palette = 4=#81A1C1
+palette = 4=#7EBBB3
 
 # magenta
-palette = 5=#B48EAD
+palette = 5=#D699B6
 
 # cyan
-palette = 6=#88C0D0
+palette = 6=#84C092
 
 # white
-palette = 7=#E5E9F0
+palette = 7=#D3C6AA
 
 # bright black
-palette = 8=#4C566A
+palette = 8=#859289
 
 # bright red
-palette = 9=#BF616A
+palette = 9=#E67D80
 
 # bright green
-palette = 10=#A3BE8C
+palette = 10=#A7BF80
 
 # bright yellow
-palette = 11=#EBCB8B
+palette = 11=#DBBC7F
 
 # bright blue
-palette = 12=#81A1C1
+palette = 12=#7EBBB3
 
 # bright magenta
-palette = 13=#B48EAD
+palette = 13=#D699B6
 
 # bright cyan
-palette = 14=#8FBCBB
+palette = 14=#84C092
 
 # bright white
-palette = 15=#ECEFF4
+palette = 15=#D3C6AA
+

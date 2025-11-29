@@ -35,28 +35,6 @@ nmap <leader>pf <Action>(GotoFile)
 nmap <leader>ps <Action>(FileStructurePopup)
 nmap <leader>pg <Action>(FindInPath)
 
-" Select in paretheses
-nnoremap <leader>p vi(
-nnoremap <leader>P vi(
-vnoremap <leader>p vi(
-vnoremap <leader>P vi(
-
-" Select in single quotes
-nnoremap <leader>' vi'
-nnoremap <leader>' vi'
-vnoremap <leader>' vi'
-vnoremap <leader>' vi'
-
-" Select in double quotes
-nnoremap <leader>" vi"
-nnoremap <leader>" vi"
-vnoremap <leader>" vi"
-vnoremap <leader>" vi"
-
-" Select in []
-nnoremap <leader>[ vi[
-vnoremap <leader>[ vi[
-
 " Split
 nmap sv <Action>(SplitVertically)
 

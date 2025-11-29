@@ -15,6 +15,12 @@ map("n", "K", function()
     vim.lsp.buf.hover({ border = "rounded", focusable = false })
 end)
 
+map("n", "<leader>co", ":copen<CR>") -- open quickfix list
+map("n", "<leader>cc", ":cclose<CR>") -- close quickfix list
+map("n", "<leader>c]", ":cnext<CR>") -- next quickfix item
+map("n", "<leader>c[", ":cprev<CR>") -- previous quickfix item
+map("n", "<leader>ca", vim.lsp.buf.code_action)
+
 -- buffer navigation
 map("n", "<leader>[", vim.cmd.BufferPrevious)
 map("n", "<leader>]", vim.cmd.BufferNext)
