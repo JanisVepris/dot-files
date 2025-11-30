@@ -2,6 +2,7 @@
 
 OPTIONS=(
     "git"
+    "lazygit"
     "font-monaspace"
     "curl"
     "wget"

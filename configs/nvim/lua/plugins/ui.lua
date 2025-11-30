@@ -17,7 +17,7 @@ return {
                 lualine_b = {},
                 lualine_c = {},
                 lualine_x = { "diagnostics" },
-                lualine_y = {},
+                lualine_y = { "lsp_status" },
                 lualine_z = { "location" },
             },
         },

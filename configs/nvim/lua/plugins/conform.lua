@@ -31,6 +31,7 @@ return { -- powerful formatter plugin
                     markdown = { "prettier" },
                     yaml = { "biome" },
                     vue = { "biome" },
+                    php = { "php_cs_fixer" },
                 },
             })
         end,

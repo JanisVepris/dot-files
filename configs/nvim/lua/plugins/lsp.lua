@@ -33,6 +33,7 @@ return {
                     "gopls",
                     "lua_ls",
                     "stylua",
+                    "intelephense",
                 },
             })
 
@@ -61,6 +62,7 @@ return {
             })
             vim.lsp.enable("gopls")
             vim.lsp.enable("lua_ls")
+            vim.lsp.enable("intelephense")
         end,
     },
     {
