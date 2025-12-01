@@ -1,7 +1,4 @@
 # This is Git's per-user configuration file.
-[user]
-	name = Janis Vepris
-    email = janis.vepris@gmail.com
 [alias]
     lg = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     rr = reset --hard HEAD
