@@ -16,6 +16,7 @@ OPTIONS=(
     "insomnia"
     "jetbrains-toolbox"
     "slack"
+    "netnewswire"
 )
 
 SELECTED=$(selection "🧩 Select dev tools to install" "${OPTIONS[@]}")

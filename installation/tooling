@@ -19,6 +19,7 @@ OPTIONS=(
     "eza"
     "gum"
     "tldr"
+    "ffmpeg"
 )
 
 SELECTED=$(selection "🛠️ Select tools to install" "${OPTIONS[@]}")

@@ -9,10 +9,12 @@ OPTIONS=(
     "sqlite"
     "python"
     "go"
+    "delve"
     "bun"
     "icu4c"
     "redis"
     "awscli"
+    "android-platform-tools"
 )
 
 SELECTED=$(selection "💻 Select dev tools to install" "${OPTIONS[@]}")
