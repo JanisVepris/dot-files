@@ -49,6 +49,8 @@ return {
                 mason = true,
                 illuminate = true,
                 harpoon = true,
+                dap = true,
+                dap_ui = true,
             },
         },
         config = function(_, opts)
@@ -57,4 +59,19 @@ return {
             ColorMyPencils()
         end,
     },
+    -- {
+    --     "neanias/everforest-nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         require("everforest").setup({
+    --             italics = true,
+    --             disable_italic_comments = false,
+    --             ui_contrast = "high", -- low, high
+    --             -- dim_inactive_windows = true,
+    --         })
+    --         vim.g.everforest_enable_italic = true
+    --         vim.cmd.colorscheme("everforest")
+    --     end,
+    -- },
 }

@@ -22,11 +22,10 @@ map("n", "<leader>c[", ":cprev<CR>") -- previous quickfix item
 map("n", "<leader>ca", vim.lsp.buf.code_action)
 
 -- buffer navigation
-map("n", "<leader>[", vim.cmd.BufferPrevious)
-map("n", "<leader>]", vim.cmd.BufferNext)
-map("n", "<leader>w", vim.cmd.BufferClose)
+map("n", "<leader>[", ":bnext<CR>")
+map("n", "<leader>]", ":bprevious<CR>")
+map("n", "<leader>w", ":bdelete<CR>")
 map("n", "<leader>W", "<cmd>wa|%bd|e#|bd#<CR>")
-map("n", "<leader>T", vim.cmd.BufferClose)
 
 -- windows navigation
 map("n", "<leader><Left>", "<C-W><Left>")

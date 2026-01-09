@@ -33,7 +33,7 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.opt.cursorline = false
 
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 
 vim.opt.fillchars = "eob: " -- remove the end of buffer ~ symbols
 
