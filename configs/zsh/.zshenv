@@ -13,6 +13,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
+export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 
 export BASH_ENV=$DOT_FILES_DIR/bashUtils
 
