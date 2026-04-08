@@ -54,6 +54,10 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=$DOT_C_DIM,italic,bold,underline"
 
 source $DOT_FILES_DIR/bashUtils
 
+if [ -f "$HOME/.env_private" ]; then
+    source $HOME/.env_private
+fi
+
 if [ -f "$DOT_WORK_DIR/.env" ]; then
     source $DOT_WORK_DIR/.env
 fi

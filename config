@@ -14,6 +14,7 @@ OPTIONS=(
     "bat"
     "powerline_fonts"
     "hushlogin"
+    "claude"
     )
 
 SELECTED=$(selection "🧩 Select configs to apply" "${OPTIONS[@]}")
@@ -29,6 +30,14 @@ if [[ $SELECTED == *"zsh"* ]]; then
     ln -sf $DOT_CONFIGS_DIR/zsh/.zshenv $HOME/.zshenv
     ln -sf $DOT_CONFIGS_DIR/zsh/janis.zsh-theme $HOME/.oh-my-zsh/custom/themes/janis.zsh-theme
     ln -sf $DOT_CONFIGS_DIR/zsh/.zshrc $HOME/.zshrc
+
+    if [[ ! -f $HOME/.zshenv_private ]]; then
+        cp $DOT_FILES_DIR/extra/.zshenv_private.example $HOME/.zshenv_private
+
+        big_message "👍  Created empty ~/.zshenv_private file. Please fill it with your private environment variables."
+    else
+        big_message "⚠️ ~/.zshenv_private already exists, skipping"
+    fi
 
     big_message "👍 Zsh configuration applied"
 fi
@@ -75,6 +84,12 @@ if [[ $SELECTED == *"bat"* ]]; then
     ln -sf $DOT_CONFIGS_DIR/bat/config $HOME/.config/bat/config
 
     big_message "👍 Bat configuration applied"
+fi
+
+if [[ $SELECTED == *"claude"* ]]; then
+    ln -sf $DOT_FILES_DIR/configs/claude/settings.json $HOME/.claude/settings.json
+
+    big_message "👍 Claude configuration applied"
 fi
 
 if [[ $SELECTED == *"powerline_fonts"* ]]; then
