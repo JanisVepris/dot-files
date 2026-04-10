@@ -1,18 +1,16 @@
 {
+  "cleanupPeriodDays": 7,
   "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "opus",
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
     "DISABLE_TELEMETRY": "1",
     "ENABLE_TOOL_SEARCH": "true",
     "BASH_MAX_TIMEOUT_MS": "600000",
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
-    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1"
   },
-
   "includeCoAuthoredBy": false,
-  "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
-  "autoUpdatesChannel": "latest",
-  "cleanupPeriodDays": 7,
-
   "permissions": {
     "allow": [
       "WebSearch",
@@ -49,7 +47,6 @@
       "Bash(git describe:*)",
       "Bash(git blame:*)",
       "Bash(git cat-file:*)",
-      "Bash(git flox activate --:*)",
       "Bash(git check-ignore:*)",
       "Bash(git config --local --get:*)",
       "Bash(git remote -v:*)",
@@ -63,9 +60,9 @@
       "Bash(git restore:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git stash:*)"
+      "Bash(git stash:*)",
+      "Bash(flox activate:*)"
     ],
-
     "deny": [
       "Read(**/.env.production)",
       "Read(**/*.aes)",
@@ -80,7 +77,6 @@
       "Read(**/*.key)",
       "Read(**/*.pem)"
     ],
-
     "ask": [
       "Bash(rm:*)",
       "Bash(mv:*)",
@@ -93,7 +89,6 @@
       "Bash(git pull:*)"
     ]
   },
-
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
@@ -103,6 +98,10 @@
     "claude-code-setup@claude-plugins-official": true,
     "phpstorm-plugin@phpstorm-marketplace": true,
     "php-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
-  }
+    "typescript-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "autoUpdatesChannel": "latest"
 }
