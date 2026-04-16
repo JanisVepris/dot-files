@@ -35,6 +35,7 @@ fi
 ./installation/dev
 ./installation/other
 ./installation/apps
+./installation/ui
 
 gum spin \
     --spinner dot \
