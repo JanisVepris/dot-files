@@ -57,6 +57,7 @@ fi
 
 if [[ $SELECTED == *"git"* ]]; then
     ln -sf $DOT_CONFIGS_DIR/git/.gitconfig $HOME/.gitconfig
+    ln -sf $DOT_CONFIGS_DIR/git/.gitconfig-work $HOME/.gitconfig-work
     ln -sf $DOT_CONFIGS_DIR/git/.gitignore_global $HOME/.gitignore_global
 
     big_message "👍 Git configuration applied"
