@@ -1,6 +1,7 @@
 {
   "cleanupPeriodDays": 7,
   "env": {
+    "COLORTERM": "truecolor",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_CODE_SUBAGENT_MODEL": "opus",
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
@@ -11,9 +12,6 @@
     "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1"
   },
   "includeCoAuthoredBy": false,
-  "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
-  "autoUpdatesChannel": "latest",
   "permissions": {
     "allow": [
       "WebSearch",
@@ -103,5 +101,9 @@
     "php-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true
-  }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "autoUpdatesChannel": "latest",
+  "preferredNotifChannel": "ghostty"
 }
