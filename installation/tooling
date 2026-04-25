@@ -2,24 +2,27 @@
 
 OPTIONS=(
     "git"
+    "gh"
     "lazygit"
-    "font-monaspace"
+    "watch"
     "curl"
     "wget"
+    "tree"
+    "font-monaspace"
     "exiftool"
     "zplug"
-    "tree"
-    "watch"
     "ripgrep"
+    "fzf"
     "neovim"
     "btop"
     "bat"
+    "eza"
     "jless"
     "jq"
-    "eza"
-    "gum"
-    "tldr"
     "ffmpeg"
+    "gum"
+    "tmux"
+    "tldr"
 )
 
 SELECTED=$(selection "🛠️ Select tools to install" "${OPTIONS[@]}")

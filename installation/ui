@@ -2,7 +2,6 @@
 
 OPTIONS=(
     aerospace
-    sketchybar
     jankyborders
 )
 
@@ -15,10 +14,6 @@ fi
 
 if [[ "$SELECTED" == "aerospace" ]]; then
     brew_install_cask "nikitabobko/tap/aerospace"
-fi
-
-if [[ "$SELECTED" == "sketchybar" ]]; then
-    brew_install "felixkratz/formulae/sketchybar"
 fi
 
 if [[ "$SELECTED" == "jankyborders" ]]; then
