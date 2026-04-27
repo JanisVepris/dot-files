@@ -23,3 +23,5 @@
     sshCommand = ssh -i ~/.ssh/id_ed25519_personal
 [includeIf "gitdir:~/code/"]
     path = ~/.gitconfig-work
+[credential]
+	helper = osxkeychain
