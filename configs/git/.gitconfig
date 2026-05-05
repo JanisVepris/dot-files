@@ -20,7 +20,7 @@
 
 [core]
     editor = nvim
-    sshCommand = ssh -i ~/.ssh/id_ed25519_personal
+    sshCommand = ssh -i ~/.ssh/id_ed25519_personal -o IdentitiesOnly=yes
 [includeIf "gitdir:~/code/"]
     path = ~/.gitconfig-work
 [credential]
