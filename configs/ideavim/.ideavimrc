@@ -18,6 +18,12 @@ set clipboard=unnamedplus,unnamed
 let keep_input_source_in_normal="com.apple.keylayout.ABC"
 " set keep-english-in-normal
 
+" disable arrrow keys
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+
 nnoremap U u
 
 nnoremap L $
