@@ -33,3 +33,6 @@ ZSH_HIGHLIGHT_STYLES[suffix-alias]="fg=$DOT_C_SECONDARY,undeline"
 # bun completions
 # [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
+
+# sentry
+fpath=("/Users/janisvepris/.local/share/zsh/site-functions" $fpath)
