@@ -67,6 +67,14 @@ return {
     },
     {
         "Saghen/blink.cmp",
+        dependencies = {
+            "saghen/blink.lib",
+        },
+        build = function()
+            -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
+            -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+            require("blink.cmp").build():pwait()
+        end,
         opts = { -- code completion
             fuzzy = { implementation = "lua" },
             keymap = {

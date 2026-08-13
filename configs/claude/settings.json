@@ -141,11 +141,6 @@
       }
     }
   },
-  "alwaysThinkingEnabled": true,
-  "effortLevel": "xhigh",
-  "autoUpdatesChannel": "latest",
-  "tui": "fullscreen",
-  "preferredNotifChannel": "ghostty",
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
@@ -333,5 +328,11 @@
       "Tarkuoju",
       "Zigzaguoju"
     ]
-  }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "xhigh",
+  "autoUpdatesChannel": "latest",
+  "tui": "fullscreen",
+  "preferredNotifChannel": "ghostty",
+  "agentPushNotifEnabled": true
 }
