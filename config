@@ -90,7 +90,9 @@ if [[ $SELECTED == *"bat"* ]]; then
 fi
 
 if [[ $SELECTED == *"claude"* ]]; then
+    mkdir -p $HOME/.claude/output-styles
     ln -sf $DOT_FILES_DIR/configs/claude/settings.json $HOME/.claude/settings.json
+    ln -sf $DOT_FILES_DIR/configs/claude/output-styles/eli5.md $HOME/.claude/output-styles/eli5.md
 
     big_message "👍 Claude configuration applied"
 fi
