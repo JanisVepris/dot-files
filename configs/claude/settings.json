@@ -110,6 +110,7 @@
     ]
   },
   "model": "opus[1m]",
+  "outputStyle": "ELI5",
   "statusLine": {
     "type": "command",
     "command": "bash /Users/janisvepris/.claude/statusline-command.sh"
