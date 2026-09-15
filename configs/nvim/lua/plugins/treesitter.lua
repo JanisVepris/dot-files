@@ -4,6 +4,7 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter-textobjects",
         },
+        lazy = false,
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
@@ -39,20 +40,15 @@ return {
                     "vue",
                     "yaml",
                 },
-
                 sync_install = false,
-
                 auto_install = true,
-
                 indent = {
                     enable = true,
                 },
-
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = { "markdown" },
                 },
-
                 incremental_selection = {
                     enable = true,
                     keymaps = {
