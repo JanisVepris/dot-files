@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Workaround for https://youtrack.jetbrains.com/projects/WI/issues/WI-85491
+# Light's Database placeholder takes the "Database" tool window id, so the real Database Tools window can't register.
+
+set -euo pipefail
+
+app="${1:-$HOME/Applications/PhpStorm Light.app}"
+classpath="$app/Contents/plugins/plugin-classpath.txt"
+
+export STUB='toolWindow id=&quot;Database&quot; anchor=&quot;right&quot; secondary=&quot;true&quot; factoryClass=&quot;com.intellij.phpstorm.databaseStub.'
+export PATCHED='toolWindow id=&quot;DB (off)&quot; anchor=&quot;right&quot; secondary=&quot;true&quot; factoryClass=&quot;com.intellij.phpstorm.databaseStub.'
+
+count() {
+    perl -0777 -ne "\$count = () = /\Q\$ENV{$1}\E/g; print \$count" "$classpath"
+}
+
+if [ ! -f "$classpath" ]; then
+    echo "Not found: $classpath"
+    exit 1
+fi
+
+if ps -axww -o command= | grep -xF "$app/Contents/MacOS/phpstorm" > /dev/null; then
+    echo "Quit PhpStorm Light first, then run fixpstorm again."
+    exit 1
+fi
+
+if [ "$(count STUB)" = 1 ]; then
+    perl -0777 -i -pe 's/\Q$ENV{STUB}\E/$ENV{PATCHED}/' "$classpath"
+    # perl -i only warns when it cannot write the file, and still exits 0
+    if [ "$(count PATCHED)" != 1 ]; then
+        echo "Could not write $classpath."
+        echo "Give your terminal App Management in System Settings > Privacy & Security, then run fixpstorm again."
+        exit 1
+    fi
+    echo "Patched the Database placeholder."
+elif [ "$(count PATCHED)" = 1 ]; then
+    echo "Already patched."
+else
+    echo "Database placeholder not found. JetBrains may have fixed WI-85491, or changed the file."
+    exit 1
+fi
+
+if ! codesign --verify --strict "$app" 2> /dev/null; then
+    codesign --force --sign - --preserve-metadata=entitlements,flags,runtime "$app"
+    codesign --verify --strict "$app"
+    echo "Re-signed the app."
+fi
+
+echo "Done. Start PhpStorm Light."
