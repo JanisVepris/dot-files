@@ -55,7 +55,7 @@ return {
                 ui.close()
             end
 
-            dap.listeners.before.event_exited = function()
+            dap.listeners.before.event_exited.dapui_config = function()
                 ui.close()
             end
         end,

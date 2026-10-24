@@ -1,10 +1,10 @@
 #!/bin/bash
 
 OPTIONS=(
-    "font-hack-nerd-font"
     "1password-cli"
-    "speedtest-cli"
     "dockutil"
+    "font-hack-nerd-font"
+    "speedtest-cli"
 )
 
 SELECTED=$(selection "📦 Select other stuff to install" "${OPTIONS[@]}")

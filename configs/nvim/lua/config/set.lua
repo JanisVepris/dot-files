@@ -27,7 +27,7 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
-vim.opt.colorcolumn = "0"
+vim.opt.colorcolumn = ""
 
 vim.opt.clipboard = "unnamedplus"
 

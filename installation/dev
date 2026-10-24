@@ -1,20 +1,20 @@
 #!/bin/bash
 
 OPTIONS=(
-    "php@8.4"
-    "php-intl"
+    "android-platform-tools"
+    "awscli"
+    "bun"
     "composer"
+    "delve"
+    "go"
+    "icu4c"
     "mysql"
     "node"
-    "sqlite"
+    "php-intl"
+    "php@8.5"
     "python"
-    "go"
-    "delve"
-    "bun"
-    "icu4c"
     "redis"
-    "awscli"
-    "android-platform-tools"
+    "sqlite"
 )
 
 SELECTED=$(selection "💻 Select dev tools to install" "${OPTIONS[@]}")

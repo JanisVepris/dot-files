@@ -7,7 +7,7 @@ return { -- powerful formatter plugin
 
             conform.setup({
                 format_on_save = {
-                    lsp_fallback = false,
+                    lsp_format = "never",
                     async = false,
                     timeout_ms = 1000,
                 },

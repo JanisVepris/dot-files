@@ -1,24 +1,24 @@
 #!/bin/bash
 
 OPTIONS=(
-    "ghostty"
-    "arc"
-    "age"
-    "google-chrome"
-    "google-drive"
-    "spotify"
-    "elgato-control-center"
     "1password"
     "1password-cli"
-    "visual-studio-code"
-    "whatsapp"
-    "obsidian"
-    "raycast"
+    "age"
+    "arc"
+    "elgato-control-center"
+    "ghostty"
+    "google-chrome"
+    "google-drive"
     "insomnia"
     "jetbrains-toolbox"
-    "slack"
-    "vlc"
     "netnewswire"
+    "obsidian"
+    "raycast"
+    "slack"
+    "spotify"
+    "visual-studio-code"
+    "vlc"
+    "whatsapp"
 )
 
 SELECTED=$(selection "🧩 Select dev tools to install" "${OPTIONS[@]}")

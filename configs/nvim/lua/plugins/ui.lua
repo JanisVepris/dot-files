@@ -33,18 +33,12 @@ return {
             },
         },
         config = function(_, opts)
-            local custom_theme = require("lualine.themes.everforest")
-
-            custom_theme.normal.c.bg = "#2B353C"
-            custom_theme.insert.c.bg = "#2B353C"
-            custom_theme.visual.c.bg = "#2B353C"
-
             opts.options = {
                 section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
                 -- section_separators = { left = "", right = "" },
                 -- component_separators = { left = "", right = "" },
-                theme = custom_theme,
+                theme = "catppuccin-nvim",
             }
             require("lualine").setup(opts)
         end,

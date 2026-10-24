@@ -1,4 +1,3 @@
-local builtin = require("telescope.builtin")
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -8,36 +7,38 @@ return {
             "nvim-telescope/telescope-ui-select.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
         },
-        opts = {
-            defaults = {
-                sorting_strategy = "ascending",
-                layout_config = {
-                    horizontal = {
-                        prompt_position = "top",
-                        width = 0.9,
-                        preview_width = 0.5,
+        opts = function()
+            return {
+                defaults = {
+                    sorting_strategy = "ascending",
+                    layout_config = {
+                        horizontal = {
+                            prompt_position = "top",
+                            width = 0.9,
+                            preview_width = 0.5,
+                        },
                     },
                 },
-            },
-            pickers = {
-                find_files = {
-                    find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+                pickers = {
+                    find_files = {
+                        find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+                    },
                 },
-            },
-            extensions = {
-                ["ui-select"] = {
-                    require("telescope.themes").get_dropdown({
-                        -- even more opts
-                    }),
+                extensions = {
+                    ["ui-select"] = {
+                        require("telescope.themes").get_dropdown({
+                            -- even more opts
+                        }),
+                    },
+                    ["file_browser"] = {
+                        hijack_netrw = false,
+                        grouped = true,
+                        git_status = false,
+                        display_stat = { date = true, size = true },
+                    },
                 },
-                ["file_browser"] = {
-                    hijack_netrw = false,
-                    grouped = true,
-                    git_status = false,
-                    display_stat = { date = true, size = true },
-                },
-            },
-        },
+            }
+        end,
         config = function(_, opts)
             require("telescope").setup(opts)
             require("telescope").load_extension("ui-select")
@@ -45,13 +46,48 @@ return {
         end,
         keys = {
             { "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR>" },
-            { "<leader>pf", builtin.find_files },
-            { "<leader>pg", builtin.live_grep },
-            { "<leader>ph", builtin.help_tags },
-            { "<leader>pb", builtin.buffers },
-            { "<leader>ps", builtin.lsp_document_symbols },
-            { "<C-p>", builtin.git_files },
-            { "<leader>gd", builtin.lsp_definitions },
+            {
+                "<leader>pf",
+                function()
+                    require("telescope.builtin").find_files()
+                end,
+            },
+            {
+                "<leader>pg",
+                function()
+                    require("telescope.builtin").live_grep()
+                end,
+            },
+            {
+                "<leader>ph",
+                function()
+                    require("telescope.builtin").help_tags()
+                end,
+            },
+            {
+                "<leader>pb",
+                function()
+                    require("telescope.builtin").buffers()
+                end,
+            },
+            {
+                "<leader>ps",
+                function()
+                    require("telescope.builtin").lsp_document_symbols()
+                end,
+            },
+            {
+                "<C-p>",
+                function()
+                    require("telescope.builtin").git_files()
+                end,
+            },
+            {
+                "<leader>gd",
+                function()
+                    require("telescope.builtin").lsp_definitions()
+                end,
+            },
             -- {
             --     "<leader>ps",
             --     function()

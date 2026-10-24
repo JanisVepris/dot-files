@@ -11,24 +11,29 @@ return {
                     focusable = false,
                     style = "minimal",
                     border = "rounded",
-                    source = "always",
+                    source = true,
                     header = "",
                     prefix = "",
                 },
             })
 
-            local on_attach = function()
-                local telescope = require("telescope.builtin")
-                vim.keymap.set("n", "gd", telescope.lsp_definitions)
-                vim.keymap.set("n", "gD", telescope.lsp_type_definitions)
-                vim.keymap.set("n", "gi", telescope.lsp_implementations)
-                vim.keymap.set("n", "gr", telescope.lsp_references)
-                vim.keymap.set("n", "rn", vim.lsp.buf.rename)
-            end
+            -- buffer-local keymaps for every LSP client
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(args)
+                    local telescope = require("telescope.builtin")
+                    local opts = { buffer = args.buf }
+                    vim.keymap.set("n", "gd", telescope.lsp_definitions, opts)
+                    vim.keymap.set("n", "gD", telescope.lsp_type_definitions, opts)
+                    vim.keymap.set("n", "gi", telescope.lsp_implementations, opts)
+                    vim.keymap.set("n", "gr", telescope.lsp_references, opts)
+                    vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
+                end,
+            })
 
             require("mason").setup()
             require("mason-lspconfig").setup({
-                automatic_installation = true,
+                -- stylua is formatted by conform, not as an LSP
+                automatic_enable = { exclude = { "stylua" } },
                 ensure_installed = {
                     "gopls",
                     "lua_ls",
@@ -37,7 +42,6 @@ return {
             })
 
             vim.lsp.config("gopls", {
-                on_attach = on_attach,
                 settings = {
                     gopls = {
                         gofumpt = true,
@@ -68,11 +72,6 @@ return {
         dependencies = {
             "saghen/blink.lib",
         },
-        build = function()
-            -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
-            -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
-            require("blink.cmp").build():pwait()
-        end,
         opts = { -- code completion
             fuzzy = { implementation = "lua" },
             keymap = {

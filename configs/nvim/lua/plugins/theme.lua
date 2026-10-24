@@ -39,19 +39,6 @@ return {
                 keywords = { "bold" },
                 strings = { "italic" },
             },
-            integrations = {
-                cmp = true,
-                barbar = true,
-                treesitter = true,
-                neogit = true,
-                telescope = { enabled = true },
-                fidget = true,
-                mason = true,
-                illuminate = true,
-                harpoon = true,
-                dap = true,
-                dap_ui = true,
-            },
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)

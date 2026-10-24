@@ -62,6 +62,6 @@ if [ -f "$DOT_WORK_DIR/.env" ]; then
     source $DOT_WORK_DIR/.env
 fi
 
-if [ -f "$DOT_WORK_DIR/.aliases" ]; then
-    source $DOT_WORK_DIR/.aliases
+if [ -f "$DOT_WORK_DIR/aliases" ]; then
+    source $DOT_WORK_DIR/aliases
 fi
