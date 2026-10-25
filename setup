@@ -34,6 +34,7 @@ brew bundle --file="$DOT_FILES_DIR/Brewfile"
 ./installation/macos-dock
 ./installation/macos-trackpad
 ./installation/macos-keyboard
+./installation/macos-finder
 
 gum spin \
     --spinner dot \

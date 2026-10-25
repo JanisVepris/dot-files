@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function setup_finder() {
+    defaults write com.apple.finder NewWindowTarget -string PfHm
+    defaults write com.apple.finder ShowRecentTags -bool false
+
+    killall Finder
+}
+
+export -f setup_finder
+
+if gum confirm "Do you want to apply Finder MacOS settings?"; then
+    gum spin --spinner dot --title "Applying Finder settings" -- bash -c setup_finder
+    big_message "✅ Finder settings applied"
+else
+    big_message "👍 Skipping Finder settings"
+fi

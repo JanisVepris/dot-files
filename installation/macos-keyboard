@@ -1,5 +1,20 @@
 #!/bin/bash
 
+function setup_key_repeat() {
+    defaults write NSGlobalDomain KeyRepeat -int 2
+    defaults write NSGlobalDomain InitialKeyRepeat -int 15
+    defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+}
+
+export -f setup_key_repeat
+
+if gum confirm "Do you want to apply Key repeat MacOS settings?"; then
+    gum spin --spinner dot --title "Applying Key repeat settings" -- bash -c setup_key_repeat
+    big_message "✅ Key repeat settings applied. Log out to use them."
+else
+    big_message "👍 Skipping Key repeat settings"
+fi
+
 if gum confirm "🇱🇹 Install keyboard layout?"; then
     cp -R $DOT_CONFIGS_DIR/keyboard/Lithuanian_Proper.bundle $HOME/Library/Keyboard\ Layouts/
     big_message "🇱🇹 Keyboard layout installed"
