@@ -6,13 +6,12 @@ big_message "🧩 Configuration wizard"
 
 OPTIONS=(
     "zsh"
-    "zhs_plugins"
+    "zsh_plugins"
     "git"
     "ghostty"
     "nvim"
     "ideavim"
     "bat"
-    "powerline_fonts"
     "hushlogin"
     "claude"
     "aerospace"
@@ -26,7 +25,11 @@ if [[ -z "$SELECTED" ]]; then
     exit 0
 fi
 
-if [[ $SELECTED == *"zsh"* ]]; then
+function is_selected() {
+    grep -qx "$1" <<< "$SELECTED"
+}
+
+if is_selected "zsh"; then
     mkdir -p $HOME/.oh-my-zsh/custom/themes
 
     ln -sf $DOT_CONFIGS_DIR/zsh/.zshenv $HOME/.zshenv
@@ -44,7 +47,7 @@ if [[ $SELECTED == *"zsh"* ]]; then
     big_message "👍 Zsh configuration applied"
 fi
 
-if [[ $SELECTED == *"zsh_plugins"* ]]; then
+if is_selected "zsh_plugins"; then
     show_spinner "zsh-autosuggestions" git clone --depth 1 --quiet https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 2> /dev/null
     show_spinner "zsh-syntax-highlighting" git clone --depth 1 --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2> /dev/null
     show_spinner "zsh-bat" git clone --depth 1 --quiet https://github.com/fdellwing/zsh-bat.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-bat 2> /dev/null
@@ -55,7 +58,7 @@ if [[ $SELECTED == *"zsh_plugins"* ]]; then
     big_message "👍 Zsh plugins installed"
 fi
 
-if [[ $SELECTED == *"git"* ]]; then
+if is_selected "git"; then
     ln -sf $DOT_CONFIGS_DIR/git/.gitconfig $HOME/.gitconfig
     ln -sf $DOT_CONFIGS_DIR/git/.gitconfig-work $HOME/.gitconfig-work
     ln -sf $DOT_CONFIGS_DIR/git/.gitignore_global $HOME/.gitignore_global
@@ -63,33 +66,35 @@ if [[ $SELECTED == *"git"* ]]; then
     big_message "👍 Git configuration applied"
 fi
 
-if [[ $SELECTED == *"ghostty"* ]]; then
-    ln -sf $DOT_CONFIGS_DIR/ghostty $HOME/.config/ghostty
+if is_selected "ghostty"; then
+    mkdir -p $HOME/.config
+    ln -sfn $DOT_CONFIGS_DIR/ghostty $HOME/.config/ghostty
 
     big_message "👍 Ghostty configuration applied"
 fi
 
-if [[ $SELECTED == *"nvim"* ]]; then
+if is_selected "nvim"; then
+    mkdir -p $HOME/.config
     rm -rf $HOME/.config/nvim
     ln -sf $DOT_CONFIGS_DIR/nvim $HOME/.config/nvim
 
     big_message "👍 Neovim configuration applied"
 fi
 
-if [[ $SELECTED == *"ideavim"* ]]; then
+if is_selected "ideavim"; then
     ln -sf $DOT_CONFIGS_DIR/ideavim/.ideavimrc $HOME/.ideavimrc
 
     big_message "👍 IdeaVim configuration applied"
 fi
 
-if [[ $SELECTED == *"bat"* ]]; then
+if is_selected "bat"; then
     mkdir -p $HOME/.config/bat
     ln -sf $DOT_CONFIGS_DIR/bat/config $HOME/.config/bat/config
 
     big_message "👍 Bat configuration applied"
 fi
 
-if [[ $SELECTED == *"claude"* ]]; then
+if is_selected "claude"; then
     mkdir -p $HOME/.claude/output-styles
     ln -sf $DOT_FILES_DIR/configs/claude/settings.json $HOME/.claude/settings.json
     ln -sf $DOT_FILES_DIR/configs/claude/output-styles/eli5.md $HOME/.claude/output-styles/eli5.md
@@ -98,26 +103,20 @@ if [[ $SELECTED == *"claude"* ]]; then
     big_message "👍 Claude configuration applied"
 fi
 
-if [[ $SELECTED == *"powerline_fonts"* ]]; then
-    git clone --depth 1 --quiet https://github.com/powerline/fonts.git $HOME/dot-files/fonts/powerline_fonts 2> /dev/null
-
-    big_message "👍 Powerline fonts installed"
-fi
-
-if [[ $SELECTED == *"hushlogin"* ]]; then
+if is_selected "hushlogin"; then
     ln -sf $DOT_FILES_DIR/extra/.hushlogin $HOME/.hushlogin
 
     big_message "👍 Hushlogin applied"
 fi
 
-if [[ $SELECTED == *"aerospace"* ]]; then
+if is_selected "aerospace"; then
     mkdir -p $HOME/.config/aerospace
     ln -sf $DOT_FILES_DIR/configs/aerospace/aerospace.toml $HOME/.config/aerospace/aerospace.toml
 
     big_message "👍 Aerospace configuration applied"
 fi
 
-if [[ $SELECTED == *"borders"* ]]; then
+if is_selected "borders"; then
     mkdir -p $HOME/.config/borders
     ln -sf $DOT_FILES_DIR/configs/borders/bordersrc $HOME/.config/borders/bordersrc
 

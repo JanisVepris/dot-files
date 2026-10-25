@@ -5,14 +5,6 @@ function big_message() {
         "$1"
 }
 
-function brew_install_cask() {
-    gum spin \
-        --show-error \
-        --spinner dot \
-        --title "Installing 🧩 $1" \
-        -- brew install --cask "$1" -y
-}
-
 function brew_install() {
     gum spin \
         --show-error \

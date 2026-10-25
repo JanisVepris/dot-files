@@ -3,8 +3,8 @@
 function setup_trackpad() {
     defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true
     defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
-    defaults write com.apple.AppleMultstouchTrackpad FirstClickThreshold -bool true
-    defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -bool true
+    defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1
+    defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 1
 }
 
 export -f setup_trackpad

@@ -23,6 +23,11 @@ brew install dockutil
 ./setup
 ```
 
+All brew packages and apps are in `Brewfile`. After you install something new, update it:
+```bash
+brew bundle dump --force
+```
+
 ## Apply configs
 ```bash
 ./config

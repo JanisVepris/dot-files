@@ -11,19 +11,18 @@ export PATH=$DOT_SCRIPTS_DIR:$PATH
 export PATH=$DOT_WORK_DIR/scripts:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
-export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
-export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 
 export BASH_ENV=$DOT_FILES_DIR/bashUtils
 
 export CODE_DIR=$HOME/code
 
-export XDEBUG_FILE_PATH=/opt/homebrew/etc/php/8.4/conf.d/xdebug.ini
-
-export JAVA_HOME="/usr/libexec/java_home"
+export PHP_CONF_DIR=/opt/homebrew/etc/php/8.5/conf.d
+export XDEBUG_FILE_PATH=$PHP_CONF_DIR/xdebug.ini
 
 export EZA_CONFIG_DIR="$DOT_CONFIGS_DIR/eza"
+
+export HOMEBREW_BUNDLE_FILE="$DOT_FILES_DIR/Brewfile"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -47,15 +46,15 @@ export C_LIGHT_CYAN='\033[1;36m'
 export C_LIGHT_RED='\033[1;31m'
 export C_LIGHT_PURPLE='\033[1;35m'
 
-export GUM_INPUT_CURSOR_FOREGROUND="$DOT_ACCENT_COLOR"
-export GUM_INPUT_PROMPT_FOREGROUND="$DOT_ACCENT_COLOR"
+export GUM_INPUT_CURSOR_FOREGROUND="$DOT_C_ACCENT"
+export GUM_INPUT_PROMPT_FOREGROUND="$DOT_C_ACCENT"
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=$DOT_C_DIM,italic,bold,underline"
 
 source $DOT_FILES_DIR/bashUtils
 
-if [ -f "$HOME/.env_private" ]; then
-    source $HOME/.env_private
+if [ -f "$HOME/.zshenv_private" ]; then
+    source $HOME/.zshenv_private
 fi
 
 if [ -f "$DOT_WORK_DIR/.env" ]; then

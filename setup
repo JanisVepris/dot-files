@@ -28,12 +28,12 @@ then
     exit
 fi
 
+big_message "📦 Installing Brewfile"
+brew bundle --file="$DOT_FILES_DIR/Brewfile"
+
 ./installation/macos-dock
 ./installation/macos-trackpad
 ./installation/macos-keyboard
-./installation/brew-packages
-./installation/brew-casks
-./installation/ui
 
 gum spin \
     --spinner dot \
