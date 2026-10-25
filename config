@@ -1,127 +1,45 @@
 #!/bin/bash
+#
+# Links every config in this repo into $HOME. Safe to run again.
+# A real file or folder in the way is moved to <name>.backup first.
 
-source ./configs/zsh/.zshenv
+source $HOME/dot-files/configs/zsh/.zshenv
 
-big_message "🧩 Configuration wizard"
+while read -r from to; do
+    [[ -z $from ]] && continue
 
-OPTIONS=(
-    "zsh"
-    "zsh_plugins"
-    "git"
-    "ghostty"
-    "nvim"
-    "ideavim"
-    "bat"
-    "hushlogin"
-    "claude"
-    "aerospace"
-    "borders"
-    )
+    target=$HOME/$to
+    mkdir -p "$(dirname "$target")"
 
-SELECTED=$(selection "🧩 Select configs to apply" "${OPTIONS[@]}")
-
-if [[ -z "$SELECTED" ]]; then
-    big_message "👍 Nothing selected"
-    exit 0
-fi
-
-function is_selected() {
-    grep -qx "$1" <<< "$SELECTED"
-}
-
-if is_selected "zsh"; then
-    mkdir -p $HOME/.oh-my-zsh/custom/themes
-
-    ln -sf $DOT_CONFIGS_DIR/zsh/.zshenv $HOME/.zshenv
-    ln -sf $DOT_CONFIGS_DIR/zsh/janis.zsh-theme $HOME/.oh-my-zsh/custom/themes/janis.zsh-theme
-    ln -sf $DOT_CONFIGS_DIR/zsh/.zshrc $HOME/.zshrc
-
-    if [[ ! -f $HOME/.zshenv_private ]]; then
-        cp $DOT_FILES_DIR/extra/.zshenv_private.example $HOME/.zshenv_private
-
-        big_message "👍  Created empty ~/.zshenv_private file. Please fill it with your private environment variables."
-    else
-        big_message "⚠️ ~/.zshenv_private already exists, skipping"
+    if [[ -e $target && ! -L $target ]]; then
+        mv "$target" "$target.backup"
     fi
 
-    big_message "👍 Zsh configuration applied"
+    ln -sfn "$DOT_FILES_DIR/$from" "$target"
+done <<'EOF'
+configs/zsh/.zshenv                     .zshenv
+configs/zsh/.zshrc                      .zshrc
+configs/zsh/janis.zsh-theme             .oh-my-zsh/custom/themes/janis.zsh-theme
+configs/git/.gitconfig                  .gitconfig
+configs/git/.gitconfig-work             .gitconfig-work
+configs/git/.gitignore_global           .gitignore_global
+configs/ssh/config                      .ssh/config
+configs/ghostty                         .config/ghostty
+configs/nvim                            .config/nvim
+configs/ideavim/.ideavimrc              .ideavimrc
+configs/bat/config                      .config/bat/config
+configs/claude/settings.json            .claude/settings.json
+configs/claude/output-styles/eli5.md    .claude/output-styles/eli5.md
+configs/claude/CLAUDE.md                .claude/CLAUDE.md
+configs/aerospace/aerospace.toml        .config/aerospace/aerospace.toml
+configs/borders/bordersrc               .config/borders/bordersrc
+extra/.hushlogin                        .hushlogin
+EOF
+
+if [[ ! -f $HOME/.zshenv_private ]]; then
+    cp $DOT_FILES_DIR/extra/.zshenv_private.example $HOME/.zshenv_private
+
+    big_message "👍 Created empty ~/.zshenv_private file. Please fill it with your private environment variables."
 fi
 
-if is_selected "zsh_plugins"; then
-    show_spinner "zsh-autosuggestions" git clone --depth 1 --quiet https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 2> /dev/null
-    show_spinner "zsh-syntax-highlighting" git clone --depth 1 --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2> /dev/null
-    show_spinner "zsh-bat" git clone --depth 1 --quiet https://github.com/fdellwing/zsh-bat.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-bat 2> /dev/null
-    show_spinner "zsh-256color" git clone --depth 1 --quiet https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-256color 2> /dev/null
-    show_spinner "zsh-artisan" git clone --depth 1 --quiet https://github.com/jessarcher/zsh-artisan.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/artisan 2> /dev/null
-    show_spinner "fzf-tab" git clone --depth 1 --quiet https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab 2> /dev/null
-
-    big_message "👍 Zsh plugins installed"
-fi
-
-if is_selected "git"; then
-    ln -sf $DOT_CONFIGS_DIR/git/.gitconfig $HOME/.gitconfig
-    ln -sf $DOT_CONFIGS_DIR/git/.gitconfig-work $HOME/.gitconfig-work
-    ln -sf $DOT_CONFIGS_DIR/git/.gitignore_global $HOME/.gitignore_global
-
-    big_message "👍 Git configuration applied"
-fi
-
-if is_selected "ghostty"; then
-    mkdir -p $HOME/.config
-    ln -sfn $DOT_CONFIGS_DIR/ghostty $HOME/.config/ghostty
-
-    big_message "👍 Ghostty configuration applied"
-fi
-
-if is_selected "nvim"; then
-    mkdir -p $HOME/.config
-    rm -rf $HOME/.config/nvim
-    ln -sf $DOT_CONFIGS_DIR/nvim $HOME/.config/nvim
-
-    big_message "👍 Neovim configuration applied"
-fi
-
-if is_selected "ideavim"; then
-    ln -sf $DOT_CONFIGS_DIR/ideavim/.ideavimrc $HOME/.ideavimrc
-
-    big_message "👍 IdeaVim configuration applied"
-fi
-
-if is_selected "bat"; then
-    mkdir -p $HOME/.config/bat
-    ln -sf $DOT_CONFIGS_DIR/bat/config $HOME/.config/bat/config
-
-    big_message "👍 Bat configuration applied"
-fi
-
-if is_selected "claude"; then
-    mkdir -p $HOME/.claude/output-styles
-    ln -sf $DOT_FILES_DIR/configs/claude/settings.json $HOME/.claude/settings.json
-    ln -sf $DOT_FILES_DIR/configs/claude/output-styles/eli5.md $HOME/.claude/output-styles/eli5.md
-    ln -sfn $DOT_FILES_DIR/configs/claude/CLAUDE.md $HOME/.claude/CLAUDE.md
-
-    big_message "👍 Claude configuration applied"
-fi
-
-if is_selected "hushlogin"; then
-    ln -sf $DOT_FILES_DIR/extra/.hushlogin $HOME/.hushlogin
-
-    big_message "👍 Hushlogin applied"
-fi
-
-if is_selected "aerospace"; then
-    mkdir -p $HOME/.config/aerospace
-    ln -sf $DOT_FILES_DIR/configs/aerospace/aerospace.toml $HOME/.config/aerospace/aerospace.toml
-
-    big_message "👍 Aerospace configuration applied"
-fi
-
-if is_selected "borders"; then
-    mkdir -p $HOME/.config/borders
-    ln -sf $DOT_FILES_DIR/configs/borders/bordersrc $HOME/.config/borders/bordersrc
-
-    big_message "👍 Borders configuration applied"
-fi
-
-cd $DOT_FILES_DIR
-big_message "✅ Done"
+big_message "✅ Configs linked"

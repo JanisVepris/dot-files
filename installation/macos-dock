@@ -26,9 +26,5 @@ function setup_dock() {
 
 export -f setup_dock
 
-if gum confirm "Do you want to apply Dock MacOS settings?"; then
-    gum spin --spinner dot --title "Applying dock settings" -- bash -c setup_dock
-    big_message "✅ Dock settings applied"
-else
-    big_message "👍 Skipping Dock settings"
-fi
+gum spin --spinner dot --title "Applying dock settings" -- bash -c setup_dock
+big_message "✅ Dock settings applied"

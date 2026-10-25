@@ -1,0 +1,151 @@
+#!/bin/bash
+#
+# Sets up a new Mac with one command:
+#
+#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JanisVepris/dot-files/master/bootstrap)"
+#
+# Safe to run again. It skips what is already done.
+
+DOT_FILES_DIR=$HOME/dot-files
+OP_SSH_SOCKET="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+FAILED=()
+
+function step() {
+    printf '\n\033[1;35m==> %s\033[0m\n' "$1"
+}
+
+function fail() {
+    FAILED+=("$1")
+    printf '\033[0;31m❌ %s failed\033[0m\n' "$1"
+}
+
+# Returns when the 1Password SSH agent has keys. Waits for the user if it does not.
+function wait_for_1password() {
+    until SSH_AUTH_SOCK="$OP_SSH_SOCKET" ssh-add -l &> /dev/null; do
+        step "⏸️  Waiting for 1Password"
+
+        if [[ -S $OP_SSH_SOCKET ]]; then
+            echo "The 1Password SSH agent runs, but it gives no keys."
+            echo "Unlock 1Password, and check that your SSH keys are in it."
+        else
+            cat <<'EOF'
+Sign in to 1Password. In Settings > Developer, turn on "Use the SSH Agent".
+
+Is it already on? Then 1Password may have moved its agent socket.
+  1. Find the new path in the 1Password docs. Search the page for "IdentityAgent":
+       https://developer.1password.com/docs/ssh/get-started/
+  2. Put the new path in both files:
+       OP_SSH_SOCKET in ~/dot-files/bootstrap
+       IdentityAgent in ~/dot-files/configs/ssh/config
+  3. Type s now, then run ~/dot-files/bootstrap again.
+EOF
+        fi
+
+        read -r -p "Press Enter when done, or type s to skip: " answer < /dev/tty || return 1
+        [[ $answer == s ]] && return 1
+    done
+}
+
+step "🔑 Asking for your password one time"
+sudo -v || exit 1
+while true; do sudo -n true; sleep 50; kill -0 "$$" || exit; done >/dev/null 2>&1 &
+
+if ! command -v brew &> /dev/null; then
+    if [[ ! -x /opt/homebrew/bin/brew ]]; then
+        step "🍺 Installing Homebrew and Xcode tools"
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit 1
+    fi
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [[ ! -d $DOT_FILES_DIR/.git ]]; then
+    step "📥 Cloning dot-files"
+    git clone https://github.com/JanisVepris/dot-files.git "$DOT_FILES_DIR" || exit 1
+    git -C "$DOT_FILES_DIR" remote set-url origin git@github.com:JanisVepris/dot-files.git
+fi
+
+cd "$DOT_FILES_DIR" || exit 1
+
+step "🔐 Installing 1Password first. Sign in and turn on its SSH agent while the rest installs. I will wait for you before I need it."
+if brew install --cask --yes 1password; then
+    open -a 1Password
+else
+    fail "1Password"
+fi
+
+step "📦 Installing Brewfile"
+brew bundle --file="$DOT_FILES_DIR/Brewfile" || fail "brew bundle"
+
+if [[ ! -x $HOME/.local/bin/claude ]]; then
+    step "🤖 Installing Claude Code"
+    (set -o pipefail; curl -fsSL https://claude.ai/install.sh | bash) || fail "Claude Code"
+fi
+
+if [[ ! -d $HOME/.oh-my-zsh ]]; then
+    step "🐚 Installing Oh My Zsh"
+    git clone --depth 1 --quiet https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh" || fail "Oh My Zsh"
+fi
+
+step "🔌 Installing zsh plugins"
+while read -r name url; do
+    plugin_dir=$HOME/.oh-my-zsh/custom/plugins/$name
+    [[ -d $plugin_dir ]] && continue
+    git clone --depth 1 --quiet "$url" "$plugin_dir" || fail "zsh plugin $name"
+done <<'EOF'
+zsh-autosuggestions      https://github.com/zsh-users/zsh-autosuggestions
+zsh-syntax-highlighting  https://github.com/zsh-users/zsh-syntax-highlighting
+zsh-bat                  https://github.com/fdellwing/zsh-bat
+zsh-256color             https://github.com/chrissicool/zsh-256color
+artisan                  https://github.com/jessarcher/zsh-artisan
+fzf-tab                  https://github.com/Aloxaf/fzf-tab
+EOF
+
+step "🔗 Linking configs"
+./config || fail "config"
+
+# Loads the gum helpers for this script and the scripts below.
+source ./configs/zsh/.zshenv
+
+step "🍏 Applying macOS settings"
+for script in ./installation/macos-*; do
+    "$script" || fail "$script"
+done
+
+if wait_for_1password; then
+    # The git and SSH configs pick a key by its .pub file. The names come from the 1Password items.
+    step "🔑 Writing SSH public keys from 1Password"
+    mkdir -p "$HOME/.ssh"
+    SSH_AUTH_SOCK="$OP_SSH_SOCKET" ssh-add -L | while read -r type key name; do
+        echo "$type $key $name" > "$HOME/.ssh/$name.pub"
+    done
+
+    if [[ ! -e $DOT_FILES_DIR/work-dot-files/.git ]]; then
+        step "💼 Cloning work-dot-files"
+        ssh_command="$(git config --global core.sshCommand || echo ssh) -o BatchMode=yes -o StrictHostKeyChecking=accept-new"
+        GIT_SSH_COMMAND="$ssh_command" git submodule update --init --quiet 2> /dev/null || fail "work-dot-files"
+    fi
+else
+    fail "SSH keys and work-dot-files (skipped, needs 1Password)"
+fi
+
+brew cleanup &> /dev/null
+
+step "✋ Do these by hand"
+cat <<'EOF'
+ 1. 1Password: sign in. In Settings > Developer, turn on "Use the SSH Agent".
+ 2. If a 1Password step was skipped, run ~/dot-files/bootstrap again.
+ 3. Fill in ~/.zshenv_private.
+ 4. Raycast: import the file in ~/dot-files/configs/raycast/.
+ 5. AeroSpace: open it and allow Accessibility.
+ 6. Keyboard: add "Lithuanian - Proper" in System Settings > Keyboard > Input Sources.
+ 7. JetBrains Toolbox: install PhpStorm.
+ 8. Log out and log in. Key repeat and the keyboard layout need this.
+EOF
+
+if [[ ${#FAILED[@]} -gt 0 ]]; then
+    step "⚠️ These steps failed. Fix them, then run bootstrap again:"
+    printf '  - %s\n' "${FAILED[@]}"
+    exit 1
+fi
+
+step "🎉 Setup complete"

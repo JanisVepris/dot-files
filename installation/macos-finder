@@ -9,9 +9,5 @@ function setup_finder() {
 
 export -f setup_finder
 
-if gum confirm "Do you want to apply Finder MacOS settings?"; then
-    gum spin --spinner dot --title "Applying Finder settings" -- bash -c setup_finder
-    big_message "✅ Finder settings applied"
-else
-    big_message "👍 Skipping Finder settings"
-fi
+gum spin --spinner dot --title "Applying Finder settings" -- bash -c setup_finder
+big_message "✅ Finder settings applied"

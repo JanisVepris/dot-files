@@ -1,39 +1,24 @@
-## Initial setup
+## New Mac setup
+
+Run this one command:
 ```bash
-# Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Install Oh My Zsh + plugins
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Clone this repo
-git clone https://github.com/JanisVepris/dot-files.git
-
-# Clone submodules
-git submodule update --init --recursive
-
-# Install gum
-brew install gum
-brew install fzf
-brew install dockutil
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JanisVepris/dot-files/master/bootstrap)"
 ```
 
-## Install apps and packages
-```bash
-./setup
-```
+It installs Homebrew, clones this repo to `~/dot-files`, installs the `Brewfile`, Oh My Zsh and plugins, links all configs, and applies the macOS settings. At the end it prints the steps you must do by hand.
+
+It is safe to run again. If a step fails, fix it and run `~/dot-files/bootstrap`.
+
+## Apps and packages
 
 All brew packages and apps are in `Brewfile`. After you install something new, update it:
 ```bash
 brew bundle dump --force
 ```
 
-## Apply configs
+## Configs
+
+To link all configs again:
 ```bash
 ./config
 ```
-
-## Aerospace
-
-Just start the Aerospace app and give it the required permissions.
-

@@ -1,0 +1,12 @@
+Include /Users/janisvepris/.colima/ssh_config
+
+Host macmini.local
+    HostName macmini.local
+    User janisvepris
+    IdentityFile ~/.ssh/id_rsa1.pub
+    IdentitiesOnly yes
+
+# Private keys live in 1Password. bootstrap writes the .pub files from it.
+# A .pub file tells the agent which key to use.
+Host *
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
