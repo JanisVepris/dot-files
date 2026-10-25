@@ -193,5 +193,6 @@
   "autoUpdatesChannel": "latest",
   "tui": "fullscreen",
   "preferredNotifChannel": "ghostty",
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "theme": "dark"
 }

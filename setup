@@ -28,13 +28,11 @@ then
     exit
 fi
 
-./installation/dock
-./installation/trackpad
-./installation/keyboard
-./installation/tooling
-./installation/dev
-./installation/other
-./installation/apps
+./installation/macos-dock
+./installation/macos-trackpad
+./installation/macos-keyboard
+./installation/brew-packages
+./installation/brew-casks
 ./installation/ui
 
 gum spin \

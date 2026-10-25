@@ -7,8 +7,10 @@ function setup_trackpad() {
     defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -bool true
 }
 
+export -f setup_trackpad
+
 if gum confirm "Do you want to apply Trackpad MacOS settings?"; then
-    gum spin --spinner dot --title "Applying Trackpad settings" -- setup_trackpad
+    gum spin --spinner dot --title "Applying Trackpad settings" -- bash -c setup_trackpad
     big_message "✅ Trackpad settings applied"
 else
     big_message "👍 Skipping Trackpad settings"

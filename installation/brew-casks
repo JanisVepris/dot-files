@@ -4,7 +4,6 @@ OPTIONS=(
     "1password"
     "1password-cli"
     "age"
-    "arc"
     "elgato-control-center"
     "ghostty"
     "google-chrome"
@@ -16,15 +15,16 @@ OPTIONS=(
     "raycast"
     "slack"
     "spotify"
+    "thebrowsercompany-dia"
     "visual-studio-code"
     "vlc"
     "whatsapp"
 )
 
-SELECTED=$(selection "🧩 Select dev tools to install" "${OPTIONS[@]}")
+SELECTED=$(selection "🧩 Select brew casks to install" "${OPTIONS[@]}")
 
 if [[ -z "$SELECTED" ]]; then
-    big_message "👍 No apps selected"
+    big_message "👍 No casks selected"
     exit 0
 fi
 

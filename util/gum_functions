@@ -10,7 +10,7 @@ function brew_install_cask() {
         --show-error \
         --spinner dot \
         --title "Installing 🧩 $1" \
-        -- brew install --cask "$1"
+        -- brew install --cask "$1" -y
 }
 
 function brew_install() {
@@ -18,7 +18,7 @@ function brew_install() {
         --show-error \
         --spinner dot \
         --title "Installing 📦 $1" \
-        -- brew install "$1"
+        -- brew install "$1" -y
 }
 
 function show_spinner() {

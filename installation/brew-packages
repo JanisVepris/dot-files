@@ -1,30 +1,45 @@
 #!/bin/bash
 
 OPTIONS=(
+    "1password-cli"
+    "android-platform-tools"
+    "awscli"
     "bat"
     "btop"
-    "curl"
+    "bun"
     "caddy"
     "colima"
+    "composer"
+    "curl"
+    "delve"
     "docker"
     "docker-compose"
+    "dockutil"
     "dust"
     "exiftool"
     "eza"
     "ffmpeg"
+    "font-hack-nerd-font"
     "font-monaspace"
-    "fzf"
-    "gh"
     "gd"
+    "gh"
     "git"
-    "gum"
+    "go"
+    "icu4c"
     "jless"
     "jq"
     "lazygit"
+    "mysql"
     "neovim"
+    "node"
     "nss"
+    "php-intl"
+    "php@8.5"
+    "python"
+    "redis"
     "ripgrep"
-    "tldr"
+    "speedtest-cli"
+    "sqlite"
     "tmux"
     "tree"
     "tree-sitter-cli"
@@ -34,10 +49,10 @@ OPTIONS=(
     "zplug"
 )
 
-SELECTED=$(selection "🛠️ Select tools to install" "${OPTIONS[@]}")
+SELECTED=$(selection "🛠️ Select brew packages to install" "${OPTIONS[@]}")
 
 if [[ -z "$SELECTED" ]]; then
-    big_message "👍 No tools selected"
+    big_message "👍 No packages selected"
     exit 0
 fi
 
