@@ -22,3 +22,10 @@ To link all configs again:
 ```bash
 ./config
 ```
+
+## macOS settings
+
+All macOS settings are in `macos`. To apply them again:
+```bash
+./macos
+```

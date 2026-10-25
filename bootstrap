@@ -107,9 +107,7 @@ step "🔗 Linking configs"
 source ./configs/zsh/.zshenv
 
 step "🍏 Applying macOS settings"
-for script in ./installation/macos-*; do
-    "$script" || fail "$script"
-done
+./macos || fail "macOS settings"
 
 if wait_for_1password; then
     # The git and SSH configs pick a key by its .pub file. The names come from the 1Password items.
