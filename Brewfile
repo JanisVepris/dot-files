@@ -116,6 +116,8 @@ cask "google-drive"
 cask "insomnia"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
+# Tool to prevent the system from going into sleep mode
+cask "keepingyouawake"
 # Free and open-source RSS reader
 cask "netnewswire"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -134,3 +136,5 @@ cask "visual-studio-code"
 cask "vlc"
 # Native desktop client for WhatsApp
 cask "whatsapp"
+# Gecko based web browser
+cask "zen"
