@@ -120,7 +120,8 @@ if wait_for_1password; then
     if [[ ! -e $DOT_FILES_DIR/work-dot-files/.git ]]; then
         step "💼 Cloning work-dot-files"
         ssh_command="$(git config --global core.sshCommand || echo ssh) -o BatchMode=yes -o StrictHostKeyChecking=accept-new"
-        GIT_SSH_COMMAND="$ssh_command" git submodule update --init --quiet 2> /dev/null || fail "work-dot-files"
+        GIT_SSH_COMMAND="$ssh_command" git clone --quiet git@github.com:JanisVepris/work-dot-files.git "$DOT_FILES_DIR/work-dot-files" 2> /dev/null \
+            || fail "work-dot-files"
     fi
 else
     fail "SSH keys and work-dot-files (skipped, needs 1Password)"

@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# Applies all macOS settings. Safe to run again.
+# Key repeat and the keyboard layout need a log out and log in.
+
+source $HOME/dot-files/configs/zsh/.zshenv
+
+function apply_settings() {
+    # Dock
+    defaults write com.apple.dock show-recents -bool false
+    defaults write com.apple.dock tilesize -int 48
+
+    defaults write com.apple.dock mineffect -string scale
+    defaults write com.apple.dock minimize-to-application -bool true
+
+    defaults write com.apple.dock magnification -bool true
+    defaults write com.apple.dock largesize -int 65
+    defaults write com.apple.dock mod-count -int 16
+
+    defaults write com.apple.dock autohide -bool true
+    defaults write com.apple.dock autohide-time-modifier -float 0.15
+    defaults write com.apple.dock autohide-delay -int 0
+
+    dockutil --remove all --no-restart
+    dockutil --add /Applications/Dia.app --no-restart
+    dockutil --add /Applications/Spotify.app --no-restart
+    dockutil --add /Applications/Ghostty.app --no-restart
+    dockutil --add /Applications/Slack.app --no-restart
+
+    # Desktop: clicking the wallpaper does not hide all windows
+    defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+    # Finder
+    defaults write com.apple.finder NewWindowTarget -string PfHm
+    defaults write com.apple.finder ShowRecentTags -bool false
+
+    # Keyboard
+    defaults write NSGlobalDomain KeyRepeat -int 2
+    defaults write NSGlobalDomain InitialKeyRepeat -int 15
+    defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+    mkdir -p "$HOME/Library/Keyboard Layouts"
+    cp -R $DOT_CONFIGS_DIR/keyboard/Lithuanian_Proper.bundle "$HOME/Library/Keyboard Layouts/"
+
+    # Trackpad
+    defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true
+    defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+    defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1
+    defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 1
+
+    killall Dock
+    killall Finder
+}
+
+export -f apply_settings
+
+gum spin --spinner dot --title "Applying macOS settings" -- bash -c apply_settings
+big_message "✅ macOS settings applied. Log out and log in for key repeat and the keyboard layout."

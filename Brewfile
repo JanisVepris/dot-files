@@ -2,12 +2,12 @@ tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "nikitabobko/tap"
 # C/C++ and Java libraries for Unicode and globalization
 brew "icu4c@79"
+# Simple, modern, secure file encryption
+brew "age"
 # Command-line interface for SQLite
 brew "sqlite"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.15"
-# Simple, modern, secure file encryption
-brew "age"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -62,6 +62,8 @@ brew "jq"
 brew "lazygit"
 # Open source relational database management system
 brew "mysql"
+# Open source relational database management system
+brew "mysql-client@8.4"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Open-source, cross-platform JavaScript runtime environment
