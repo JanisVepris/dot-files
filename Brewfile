@@ -1,4 +1,5 @@
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
+tap "mantrakp04/tap"
 tap "nikitabobko/tap"
 # C/C++ and Java libraries for Unicode and globalization
 brew "icu4c@79"
@@ -100,6 +101,8 @@ cask "1password-cli"
 cask "nikitabobko/tap/aerospace", trusted: true
 # Android SDK component
 cask "android-platform-tools"
+# Web browser with Arc's sidebar and Dia's polish
+cask "mantrakp04/tap/ardia", trusted: true
 # Control your Elgato key lights
 cask "elgato-control-center"
 # Manages environments across the software lifecycle
@@ -128,13 +131,9 @@ cask "raycast"
 cask "slack"
 # Music streaming service
 cask "spotify"
-# Web browser
-cask "thebrowsercompany-dia"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
 # Native desktop client for WhatsApp
 cask "whatsapp"
-# Gecko based web browser
-cask "zen"
