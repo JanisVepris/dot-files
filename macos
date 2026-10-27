@@ -34,6 +34,8 @@ function apply_settings() {
     # Finder
     defaults write com.apple.finder NewWindowTarget -string PfHm
     defaults write com.apple.finder ShowRecentTags -bool false
+    # List view for every folder that has no view of its own
+    defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
 
     # Keyboard
     defaults write NSGlobalDomain KeyRepeat -int 2
