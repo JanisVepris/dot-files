@@ -22,10 +22,11 @@ function apply_settings() {
     defaults write com.apple.dock autohide-delay -int 0
 
     dockutil --remove all --no-restart
-    dockutil --add /Applications/Dia.app --no-restart
-    dockutil --add /Applications/Spotify.app --no-restart
+    dockutil --add /Applications/Ardia.app --no-restart
+    dockutil --add /Users/janisvepris/Applications/PhpStorm%20Light.app --no-restart
     dockutil --add /Applications/Ghostty.app --no-restart
     dockutil --add /Applications/Slack.app --no-restart
+    dockutil --add /Applications/Spotify.app --no-restart
 
     # Desktop: clicking the wallpaper does not hide all windows
     defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
