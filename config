@@ -29,6 +29,7 @@ configs/nvim                            .config/nvim
 configs/ideavim/.ideavimrc              .ideavimrc
 configs/bat/config                      .config/bat/config
 configs/claude/settings.json            .claude/settings.json
+configs/claude/statusline-command.sh    .claude/statusline-command.sh
 configs/claude/output-styles/eli5.md    .claude/output-styles/eli5.md
 configs/claude/CLAUDE.md                .claude/CLAUDE.md
 configs/aerospace/aerospace.toml        .config/aerospace/aerospace.toml
