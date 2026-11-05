@@ -127,7 +127,8 @@
     "typescript-lsp@claude-plugins-official": true,
     "roboflow@roboflow": true,
     "sentry-cli@claude-plugins-official": true,
-    "cc-plugin-you-should-know@builtin": true
+    "cc-plugin-you-should-know@builtin": true,
+    "swift-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "roboflow": {
@@ -192,7 +193,7 @@
   },
   "autoUpdatesChannel": "latest",
   "tui": "fullscreen",
+  "theme": "dark",
   "preferredNotifChannel": "ghostty",
-  "agentPushNotifEnabled": true,
-  "theme": "dark"
+  "agentPushNotifEnabled": true
 }
